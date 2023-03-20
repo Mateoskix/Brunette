@@ -7,6 +7,7 @@ module.exports = withMT({
     extend: {
       fontFamily: {
         'bunya' : ['Bunya', 'sans-serif'],
+        'bunya-bold' : ['Bunya-Bold', 'sans-serif'],
       },
       colors: {
       'custom-primary':'#B17F4A',

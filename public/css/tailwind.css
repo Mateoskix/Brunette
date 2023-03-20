@@ -6,3 +6,8 @@
     font-family: 'Bunya';
     src: url('../fonts/Bunya-Regular_PERSONAL.ttf');
 }
+
+@font-face {
+    font-family: 'Bunya-Bold';
+    src: url('../fonts/Bunya-Bold_PERSONAL.ttf');
+}

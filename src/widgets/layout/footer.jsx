@@ -1,58 +1,39 @@
-import PropTypes from "prop-types";
-import { Typography, IconButton } from "@material-tailwind/react";
+import fb from '/img/icon_facebook_.png';
+import wpp from '/img/icon _whatsapp_.png';
+import ig from '/img/icon _instagram_.png';
+import tiktok from '/img/icon _tiktok_.png';
 
 const year = new Date().getFullYear();
 
-export function Footer({ title, description, socials, menus, copyright }) {
+export function Footer() {
   return (
-    <footer className="relative px-4 pt-8 pb-6">
+    <footer className="relative">
+      <div className="container h-10 md:h-1"></div>
+      <hr className="w-48 h-1 mx-auto my-4 bg-white border-0 rounded md:my-10 dark:bg-gray-700" />
+      <div className="mx-auto flex flex-row">
+      <div className="hidden mx-16 md:block">
+        <img src="/img/simbolo.png" alt="LogoCompañia" className="object-contain"/>
+      </div>
+      <div className="flex-column mx-16 text-white justify-start">
+        <h4 className="font-bunya-bold">Sedes</h4>
+        <p className="font-bunya mb-4">Carrera 23 #12-53 Local 1 Parque Garupal Valledupar, Cesar, Colombia</p>
+        <h4 className="font-bunya-bold">Horario</h4>
+        <p className="font-bunya">Lunes - Sábado: 8:00 am - 9:30 pm Domingo: 3:00 pm - 9:30 pm</p>
+      </div>
+      <div className="flex-column mx-16 text-white justify-start">
+        <h4 className="font-bunya-bold">Email</h4>
+        <p className="font-bunya mb-4">brunetteartesanal@outlook.com</p>
+      </div>
+      <div className="flex-column mx-16 text-white justify-start">
+        <a href=""><img src={ig} alt="facebook"/></a>
+        <a href=""><img src={wpp} alt="facebook"/></a>
+        <a href=""><img src={fb} alt="facebook"/></a>
+        <a href=""><img src={tiktok} alt="tiktok"/></a>
+      </div>
+      </div>
     </footer>
   );
 }
-
-Footer.defaultProps = {
-  title: "Material Tailwind",
-  description:
-    "Easy to use React components for Tailwind CSS and Material Design.",
-  socials: [
-    {
-      color: "blue",
-      name: "facebook",
-      path: "https://www.facebook.com/CreativeTim",
-    },
-    {
-      color: "light-blue",
-      name: "twitter",
-      path: "https://www.twitter.com/creativetim",
-    },
-    {
-      color: "purple",
-      name: "instagram",
-      path: "https://www.instagram.com/creativetimofficial/",
-    },
-    {
-      color: "pink",
-      name: "dribbble",
-      path: "https://www.dribbble.com/creativetim",
-    },
-    {
-      color: "red",
-      name: "youtube",
-      path: "https://www.youtube.com/channel/UCVyTG4sCw-rOvB9oHkzZD1w",
-    },
-    {
-      color: "black",
-      name: "github",
-      path: "https://github.com/creativetimofficial/material-tailwind",
-    },
-  ],
-};
-
-Footer.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string,
-  socials: PropTypes.arrayOf(PropTypes.object),
-};
 
 Footer.displayName = "/src/widgets/layout/footer.jsx";
 
