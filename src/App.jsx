@@ -5,7 +5,7 @@ import routes from "@/routes";
 function App() {
   return (
     <>
-      <div className="container static z-10">
+      <div className="container static bg-white mx-auto">
         <Navbar routes={routes} />
       </div>
       <Routes>

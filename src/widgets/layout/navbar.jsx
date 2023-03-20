@@ -21,7 +21,7 @@ export function Navbar({ brandName, routes, action }) {
   }, []);
 
   const navList = (
-    <ul className="mb-4 mt-2 flex flex-col gap-2 text-inherit lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+    <ul className="mb-4 mt-2 flex flex-col gap-2 text-inherit lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 bg-white">
       {routes.map(({ name, path, icon, href, target }) => (
         <Typography
           key={name}
@@ -61,8 +61,8 @@ export function Navbar({ brandName, routes, action }) {
   );
 
   return (
-    <MTNavbar color="#FFFFFF" className="p-0">
-      <div className="container items-center justify-between flex p-1 mx-10">
+    <MTNavbar color="transparent" className="p-0">
+      <div className="container items-center justify-between flex">
         <Link to="/">
           <img src="/img/LogoBrunettePrimario.png" alt="logo" className="object-scale-down h-12"/>
         </Link>
