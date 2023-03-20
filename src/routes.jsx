@@ -1,4 +1,4 @@
-import { Inicio, Profile, SignIn, SignUp } from "@/pages";
+import { Inicio, Profile, Menu, SignUp } from "@/pages";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 
 export const routes = [
@@ -13,9 +13,9 @@ export const routes = [
     element: <Profile />,
   },
   {
-    name: "Sign In",
-    path: "/sign-in",
-    element: <SignIn />,
+    name: "Menu",
+    path: "/Menu",
+    element: <Menu />,
   },
   {
     icon: ShoppingCartIcon,
