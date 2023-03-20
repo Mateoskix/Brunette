@@ -172,13 +172,13 @@ export function Inicio() {
               <Input variant="standard" size="lg" label="Email Address" />
             </div>
             <Textarea variant="standard" size="lg" label="Message" rows={8} />
-            <Button variant="gradient" size="lg" className="mt-8">
+            <Button variant="gradient" size="lg" className="mt-8 font-bunya">
               Send Message
             </Button>
           </form>
         </div>
       </section>
-      <div className="bg-blue-gray-50/50">
+      <div className="bg-custom-primary">
         <Footer />
       </div>
     </>

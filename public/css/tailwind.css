@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'Bunya';
+    src: url('../fonts/Bunya-Regular_PERSONAL.ttf');
+}
