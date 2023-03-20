@@ -5,7 +5,7 @@ import routes from "@/routes";
 function App() {
   return (
     <>
-      <div className="container absolute left-2/4 z-10 mx-auto -translate-x-2/4 p-4">
+      <div className="container static z-10">
         <Navbar routes={routes} />
       </div>
       <Routes>
@@ -13,7 +13,7 @@ function App() {
           ({ path, element }, key) =>
             element && <Route key={key} exact path={path} element={element} />
         )}
-        <Route path="*" element={<Navigate to="/home" replace />} />
+        <Route path="*" element={<Navigate to="/inicio" replace />} />
       </Routes>
     </>
   );
