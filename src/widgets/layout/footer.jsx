@@ -24,11 +24,11 @@ export function Footer() {
         <h4 className="font-bunya-bold">Email</h4>
         <p className="font-bunya mb-4">brunetteartesanal@outlook.com</p>
       </div>
-      <div className="flex-column mx-16 text-white justify-start">
-        <a href=""><img src={ig} alt="facebook"/></a>
-        <a href=""><img src={wpp} alt="facebook"/></a>
-        <a href=""><img src={fb} alt="facebook"/></a>
-        <a href=""><img src={tiktok} alt="tiktok"/></a>
+      <div className="flex-column mx-16 text-white ">
+        <a href="https://www.instagram.com/brunetteartesanal/"><img className='mb-4' src={ig} alt="Instagram"/></a>
+        <a href=""><img className='mb-4' src={wpp} alt="Whatsapp "/></a>
+        <a href=""><img className='mb-4' src={fb} alt="facebook"/></a>
+        <a href=""><img className='mb-4' src={tiktok} alt="tiktok"/></a>
       </div>
       </div>
     </footer>

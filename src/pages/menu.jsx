@@ -178,7 +178,7 @@ export function Menu() {
           </form>
         </div>
       </section>
-      <div className="bg-blue-gray-50/50">
+      <div className="bg-custom-primary">
         <Footer />
       </div>
     </>
