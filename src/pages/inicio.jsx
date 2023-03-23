@@ -95,10 +95,8 @@ export function Inicio() {
                   >
                     Top Notch Services
                   </Typography>
-                  <Typography className="font-normal text-blue-gray-500">
-                    The Arctic Ocean freezes every winter and much of the
-                    sea-ice then thaws every summer, and that process will
-                    continue whatever happens.
+                  <Typography className="font-Bunya-Bold text-blue-gray-500">
+                    prueba.
                   </Typography>
                 </CardBody>
               </Card>
@@ -106,12 +104,13 @@ export function Inicio() {
           </div>
         </div>
       </section>
-      <section className="px-4 pt-20 pb-48">
-        <div className="container mx-auto">
-          <PageTitle heading="Here are our heroes">
-            According to the National Oceanic and Atmospheric Administration,
-            Ted, Scambos, NSIDClead scentist, puts the potentially record
-            maximum.
+      <section className="px-4 pt-10 pb-48">
+        <div className="font-Bunya text-orange-600 container mx-auto">
+          <PageTitle heading="Galeria" >
+            <div className="mb-8 text-2xl font-Bunya-Bold text-orange-600">
+            Pequeña muestra de nuestra galeria.
+            </div>
+            
           </PageTitle>
           <div className="mt-24 grid grid-cols-1 gap-12 gap-x-24 md:grid-cols-2 xl:grid-cols-4">
             {teamData.map(({ img, name, position, socials }) => (
