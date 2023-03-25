@@ -1,16 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import { RxDotFilled } from 'react-icons/rx';
 
 const PhotoCarousel = () => {
 
-
     const slides = [
-        { url: 'img/producto2.JPG' },
+        { url: 'img/teamwork.jpeg' },
         { url: 'img/producto4.JPG' }
     ];
 
     const [currentIndex, setCurrentIndex] = useState(0);
+
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            nextSlide();
+        }, 6000);
+        return () => clearInterval(intervalId);
+    }, [currentIndex]);
 
     const prevSlide = () => {
         const isFirstSlide = currentIndex === 0;
@@ -29,10 +35,10 @@ const PhotoCarousel = () => {
     };
 
     return (
-        <div className='max-w-[1400px] h-[680px] w-full relative group'>
+        <div className='max-w-[1400px] h-[580px] w-full relative group'>
             <div
                 style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
-                className='w-full h-full rounded-2xl bg-center bg-cover duration-500'
+                className='w-full h-full bg-center bg-cover'
             ></div>
             {/* Left Arrow */}
             <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'>
@@ -47,7 +53,7 @@ const PhotoCarousel = () => {
                     <div
                         key={slideIndex}
                         onClick={() => goToSlide(slideIndex)}
-                        className='text-2xl cursor-pointer'
+                        className={`text-2xl cursor-pointer ${currentIndex === slideIndex ? 'text-custom-primary text-opacity-50': 'text-custom-primary'}`}
                     >
                         <RxDotFilled />
                     </div>
