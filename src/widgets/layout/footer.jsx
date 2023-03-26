@@ -16,9 +16,9 @@ export function Footer() {
       </div>
       <div className="flex-column mx-16 text-white justify-start">
         <h4 className="font-bunya-bold">Sedes</h4>
-        <p className="font-bunya mb-4">Carrera 23 #12-53 Local 1 Parque Garupal Valledupar, Cesar, Colombia</p>
+        <p className="font-bunya mb-4">Carrera <span className='font-sans'>23 #12-53 </span> Local <span className='font-sans'>1</span> Parque Garupal Valledupar, Cesar, Colombia</p>
         <h4 className="font-bunya-bold">Horario</h4>
-        <p className="font-bunya">Lunes - Sábado: 8:00 am - 9:30 pm Domingo: 3:00 pm - 9:30 pm</p>
+        <p className="font-bunya">Lunes - Sábado: <span className='font-sans'>8:00</span> am - <span className='font-sans'>9:30</span> pm Domingo: <span className='font-sans'>3:00</span> pm - <span className='font-sans'>9:30</span> pm</p>
       </div>
       <div className="flex-column mx-16 text-white justify-start">
         <h4 className="font-bunya-bold">Email</h4>

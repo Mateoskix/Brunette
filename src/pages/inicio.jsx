@@ -21,10 +21,10 @@ export function Inicio() {
     <div className="mb-10">
    <PhotoCarousel />
     </div>
-      <section className="px-4 pt-10 pb-48">
-        <div className="font-Bunya text-orange-600 container mx-auto">
-          <PageTitle heading="Galeria" >
-            <div className="mb-8 text-2xl font-Bunya-Bold text-orange-600">
+      <section className="px-4 pt-10 pb-48 font-bunya">
+        <div className="text-orange-600 container mx-auto">
+          <PageTitle heading="Galeria">
+            <div className="mb-8 text-2xl text-orange-600">
             Pequeña muestra de nuestra galeria.
             </div>
           </PageTitle>

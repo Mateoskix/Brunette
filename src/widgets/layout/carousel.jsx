@@ -36,7 +36,7 @@ const PhotoCarousel = () => {
     };
 
     return (
-        <div className='max-w-[1400px] h-[580px] w-full relative group'>
+        <div className='max-w-[1400px] 2xl:mx-auto h-[580px] w-full relative group'>
             <div
                 style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
                 className='w-full h-full bg-center bg-cover'
