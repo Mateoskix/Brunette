@@ -8,8 +8,8 @@ export const routes = [
     element: <Inicio />,
   },
   {
-    name: "profile",
-    path: "/profile",
+    name: "Nosotros",
+    path: "/nosotros",
     element: <Profile />,
   },
   {

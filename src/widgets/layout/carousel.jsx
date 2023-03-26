@@ -6,7 +6,8 @@ const PhotoCarousel = () => {
 
     const slides = [
         { url: 'img/teamwork.jpeg' },
-        { url: 'img/producto4.JPG' }
+        { url: 'img/producto4.JPG' },
+        { url: 'img/background_inicio.jpg'}
     ];
 
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -53,7 +54,7 @@ const PhotoCarousel = () => {
                     <div
                         key={slideIndex}
                         onClick={() => goToSlide(slideIndex)}
-                        className={`text-2xl cursor-pointer ${currentIndex === slideIndex ? 'text-custom-primary text-opacity-50': 'text-custom-primary'}`}
+                        className={`text-2xl cursor-pointer ${currentIndex === slideIndex ? 'text-custom-primary': 'text-custom-primary text-opacity-50'}`}
                     >
                         <RxDotFilled />
                     </div>

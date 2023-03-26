@@ -34,7 +34,7 @@ export function Navbar({ brandName, routes, action }) {
             <a
               href={href}
               target={target}
-              className="flex items-center gap-1 p-1 font-normal"
+              className="flex items-center gap-1 p-1 font-bunya text-lg"
             >
               {icon &&
                 React.createElement(icon, {
@@ -46,7 +46,7 @@ export function Navbar({ brandName, routes, action }) {
             <Link
               to={path}
               target={target}
-              className="flex items-center gap-1 p-1 font-normal"
+              className="flex items-center gap-1 p-1 font-bunya text-lg"
             >
               {icon &&
                 React.createElement(icon, {
@@ -64,14 +64,14 @@ export function Navbar({ brandName, routes, action }) {
     <MTNavbar color="transparent" className="p-0">
       <div className="container items-center justify-between flex">
         <Link to="/">
-          <img src="/img/LogoBrunettePrimario.png" alt="logo" className="object-scale-down h-12"/>
+          <img src="/img/LogoBrunettePrimario.png" alt="logo" className="object-scale-down h-12 translate-y-[15%]"/>
         </Link>
-        <div className="hidden lg:block">{navList}</div>
+        <div className="hidden lg:block lg:translate-y-[35%]">{navList}</div>
         <IconButton
           variant="text"
           size="sm"
           color="white"
-          className="ml-auto text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+          className="ml-auto text-black hover:bg-custom-primary focus:bg-transparent active:bg-custom-primary lg:hidden"
           onClick={() => setOpenNav(!openNav)}
         >
           {openNav ? (
