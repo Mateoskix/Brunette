@@ -11,7 +11,7 @@ export function Footer() {
       <div className="container h-10 md:h-1"></div>
       <hr className="w-48 h-1 mx-auto my-4 bg-white border-0 rounded md:my-10 dark:bg-gray-700" />
       <div className="mx-auto flex flex-row">
-      <div className="hidden mx-16 md:block">
+      <div className="hidden mx-16 md:block -translate-y-[10%]">
         <img src="/img/simbolo.png" alt="LogoCompañia" className="object-contain"/>
       </div>
       <div className="flex-column mx-16 text-white justify-start">
