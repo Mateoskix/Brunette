@@ -1,17 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import {
   Navbar as MTNavbar,
   MobileNav,
   Typography,
-  Button,
   IconButton,
 } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { UserCircleIcon } from "@heroicons/react/24/solid";
 
-export function Navbar({ brandName, routes, action }) {
+export function Navbar({ brandName, routes, action, onCartClick}) {
   const [openNav, setOpenNav] = React.useState(false);
+
+  const handleCartClick = () => {
+    onCartClick();
+  };
 
   React.useEffect(() => {
     window.addEventListener(
@@ -46,17 +51,16 @@ export function Navbar({ brandName, routes, action }) {
             <Link
               to={path}
               target={target}
-              className="flex items-center gap-1 p-1 font-bunya text-lg"
+              className="flex items-center gap-1 p-1 font-bunya hover:font-bunya-bold hover:text-custom-primary text-lg"
             >
-              {icon &&
-                React.createElement(icon, {
-                  className: "w-[18px] h-[18px] opacity-75 mr-1",
-                })}
               {name}
             </Link>
           )}
         </Typography>
       ))}
+      <button type="button" onClick={handleCartClick}>
+      {React.createElement(ShoppingCartIcon, {className: "w-[18px] h-[18px] opacity-75 mr-1 text-black hover:text-custom-primary hover:cursor-pointer active:text-custom-primary"})}
+      </button>
     </ul>
   );
 
@@ -97,7 +101,9 @@ Navbar.propTypes = {
   brandName: PropTypes.string,
   routes: PropTypes.arrayOf(PropTypes.object).isRequired,
   action: PropTypes.node,
+  onCartClick: PropTypes.func.isRequired,
 };
+
 
 Navbar.displayName = "/src/widgets/layout/navbar.jsx";
 

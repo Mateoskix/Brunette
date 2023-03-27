@@ -1,5 +1,4 @@
 import { Inicio, Profile, Menu, SignUp } from "@/pages";
-import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 
 export const routes = [
   {
@@ -16,11 +15,6 @@ export const routes = [
     name: "Menu",
     path: "/Menu",
     element: <Menu />,
-  },
-  {
-    icon: ShoppingCartIcon,
-    path: "/sign-up",
-    element: <SignUp />,
   },
 ];
 
