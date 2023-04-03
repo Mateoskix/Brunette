@@ -13,7 +13,7 @@ export function Profile() {
         <div className="bg-profile-background absolute top-0 h-full w-full bg-[url('/img/local_todos.JPG')] bg-cover bg-center" />
         <div className="absolute top-0 h-full w-full bg-black/75 bg-cover bg-center" />
         <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center">
-          <h1 className="text-white text-4xl font-Bunya">Sobre Nosotros...</h1>
+          <h1 className="text-white text-4xl font-roulette">Sobre Nosotros...</h1>
         </div>
       </section>
       

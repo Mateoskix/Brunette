@@ -8,6 +8,9 @@ module.exports = withMT({
       fontFamily: {
         'bunya' : ['Bunya', 'sans-serif'],
         'bunya-bold' : ['Bunya-Bold', 'sans-serif'],
+        'roulette': ['Roulette', 'sans-serif'],
+        'lemon-bold': ['Lemon-Bold', 'sans-serif'],
+        'lemon': ['Lemon', 'sans-serif'],
       },
       colors: {
       'custom-primary':'#B17F4A',
