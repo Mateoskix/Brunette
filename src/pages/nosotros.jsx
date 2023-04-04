@@ -23,7 +23,7 @@ export function Nosotros() {
             <div className="mx-auto mt-16">
               <div className="grid  grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-10 ">
                 <div className="relative flex flex-col justify-center items-center">
-                  <img src="/img/team1.jpg" width="50%" />
+                  <img src="/img/team-1.jpg" width="50%" />
                 </div>
 
                 <div className="relative flex flex-col justify-center items-center">
