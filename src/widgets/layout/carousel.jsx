@@ -7,7 +7,8 @@ const PhotoCarousel = () => {
     const slides = [
         { url: 'img/teamwork.jpeg' },
         { url: 'img/producto4.JPG' },
-        { url: 'img/background_inicio.jpg'}
+        { url: 'img/background_inicio.jpg'},
+        { url: 'img/team2.jpg'}
     ];
 
     const [currentIndex, setCurrentIndex] = useState(0);
