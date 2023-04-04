@@ -28,17 +28,17 @@ export function Nosotros() {
                 
                 <div className="relative flex flex-col justify-center text-left items-center">
                   <div className="mt-2 font-lemon leading-7 text-gray-300">Desde 2018, dejando el corazón en cada producto. Nuestra misión es entregarlo todo, ofrecer lo mejor, porque cada detalle merece ser pensado, cada sueño merece ser cumplido, por eso perseveramos. Poco a poco vamos construyendo nuestra historia. Gracias por acompañarnos en el camino. 
-                  <br /><br /> Participamos activamente en las mejores ferias, de valledupar,destacándonos por nuestra forma dinámica de servirlea nuestros clientes,lo que nos ha permitido crecerde manera exponencial en nuestras plataformas digitales.Hoy contamos con una comunidad  de más de 16.000 seguidores.</div>
+                  <br /><br /> Participamos activamente en las mejores ferias, de valledupar, destacándonos por nuestra forma dinámica de servirle a nuestros clientes, lo que nos ha permitido crecer de manera exponencial en nuestras plataformas digitales. Hoy contamos con una comunidad de más de 16.000 seguidores.</div>
                   <div className="mt-2 font-lemon leading-7 text-gray-300"></div>
                 </div>
 
                 <hr className="my-10" /><hr className="my-10" />
 
                 <div className="relative flex flex-col text-right justify-center">
-                  <div className="mt-2 font-roulette text-4xl leading-7 text-gray-300">¿QUE HACEMOS?</div>
+                  <div className="mt-2 font-roulette text-4xl leading-7 text-gray-300">¿QUÉ HACEMOS?</div>
                   <div className="mt-2 font-lemon leading-7 text-gray-300"> Brunette Artesanal, es reconocido por elaborar un yogurt gourmet, que tiene como características especiales su sabor, consistencia, textura suave al paladar y su versatilidad para ser combinado con diferentes toppings, siendo pioneros en esta manera diferente de consumir yogurt. <br /><br /></div>
                   <div className="mt-2 font-roulette text-4xl leading-7 text-gray-300">¡NUESTROS PRODUCTOS!</div>
-                  <div className="mt-2 font-lemon leading-7 text-gray-300">Nuestra estrella, el yogur natural brunette... el que con todo combina, de el se desprenden los diferentes productos que ofrecemos a nuestro público! teniendo opciones como “ARMA TU BRUNETTE” que amplia las posibilidades a nuevas experiencias.</div>
+                  <div className="mt-2 font-lemon leading-7 text-gray-300">Nuestra estrella, el yogurt natural brunette... el que con todo combina, de él se desprenden los diferentes productos que ofrecemos a nuestro público! teniendo opciones como “ARMA TU BRUNETTE” que amplía las posibilidades a nuevas experiencias.</div>
                 </div>                
 
                 <div className="relative flex flex-col justify-center items-center">

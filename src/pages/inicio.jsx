@@ -12,9 +12,9 @@ export function Inicio() {
       </div>
       <section className="px-4 pt-10 pb-10 bg-white">
         <div className="text-orange-600 container mx-auto">
-          <PageTitle heading="Galeria">
+          <PageTitle heading="Galería">
             <div className="mb-8 text-2xl text-orange-600">
-              Pequeña muestra de nuestra galeria.
+              Pequeña muestra de nuestra galería.
             </div>
           </PageTitle>
           <div className="mt-15 grid grid-cols-1 gap-12 gap-x-24 md:grid-cols-2 xl:grid-cols-4">
