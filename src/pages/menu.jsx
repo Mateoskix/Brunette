@@ -11,6 +11,7 @@ import {
 } from "@material-tailwind/react";
 import { UsersIcon } from "@heroicons/react/24/solid";
 import { Footer } from "@/widgets/layout";
+import { Example } from "@/widgets/layout/item";
 
 export function Menu() {
   return (
@@ -26,7 +27,9 @@ export function Menu() {
 
 <section>
   <h1 className="sr-only">Checkout</h1>
-
+  <div>
+          <Example></Example>
+        </div>
   <div className="mx-auto grid max-w-screen-2xl grid-cols-1 md:grid-cols-2">
     <div className="bg-gray-50 py-12 md:py-24">
       <div className="mx-auto max-w-lg space-y-8 px-4 lg:px-8">
@@ -35,6 +38,8 @@ export function Menu() {
 
           <h2 className="font-medium text-gray-900">BambooYou</h2>
         </div>
+        
+
 
         <div>
           <p className="text-2xl font-medium tracking-tight text-gray-900">
