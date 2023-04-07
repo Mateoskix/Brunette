@@ -11,7 +11,7 @@ import {
 } from "@material-tailwind/react";
 import { SimpleFooter } from "@/widgets/layout";
 
-export function SignUp() {
+export function Checkout() {
   return (
     <>
       <img
@@ -70,4 +70,4 @@ export function SignUp() {
   );
 }
 
-export default SignUp;
+export default Checkout;
