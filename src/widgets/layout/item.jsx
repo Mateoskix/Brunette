@@ -6,12 +6,12 @@ const products = [
     name: 'QUESANETTA',
     href: '#',
     url: 'img/producto4.JPG',
-    imageAlt: "Maravilloso.",
+    imageAlt: "Desde 2018",
     price: '$6.800',
     color: 'Mediano',
   },
   {
-    id: 1,
+    id: 2,
     name: 'QUESANETTA',
     href: '#',
     url: 'img/producto4.JPG',
@@ -19,6 +19,34 @@ const products = [
     price: '$6.800',
     color: 'Mediano',
   },
+  {
+    id: 3,
+    name: 'QUESANETTA',
+    href: '#',
+    url: 'img/producto4.JPG',
+    imageAlt: "Maravilloso.",
+    price: '$6.800',
+    color: 'Mediano',
+  },
+  {
+    id: 4,
+    name: 'QUESANETTA',
+    href: '#',
+    url: 'img/producto4.JPG',
+    imageAlt: "Maravilloso.",
+    price: '$6.800',
+    color: 'Mediano',
+  },
+  {
+    id: 5,
+    name: 'QUESANETTA',
+    href: '#',
+    url: 'img/producto4.JPG',
+    imageAlt: "Maravilloso.",
+    price: '$6.800',
+    color: 'Mediano',
+  },
+
   
 ]
 
@@ -31,8 +59,8 @@ export function Example() {
             <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
               {products.map((product) => (
                 <div key={product.id} className="group relative flex flex-row-reverse">
-                  <div className="mb-20 mt-4 flex justify-between">
-                    <div className="ml-2">
+                  <div className="mb-20 mt-4  custom-product-container">
+                    <div className="ml-2  w-40" >
                       <h3 className="text-sm text-gray-700">
                         <a href={product.href}>
                           <span aria-hidden="true" className="absolute inset-0" />

@@ -33,4 +33,9 @@
 
 .custom-bg-white {
     background-color: white;
-  }
+}
+
+.custom-product-container {
+    width: 120px;
+    height: 40px;
+}
