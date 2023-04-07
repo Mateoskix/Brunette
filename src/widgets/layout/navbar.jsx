@@ -47,7 +47,7 @@ export function Navbar({ brandName, routes, action, onCartClick}) {
                 })}
               {name}
             </a>
-          ) : (
+          ) : name !== "Checkout" ? (
             <Link
               to={path}
               target={target}
@@ -55,14 +55,14 @@ export function Navbar({ brandName, routes, action, onCartClick}) {
             >
               {name}
             </Link>
-          )}
+          ) : null}
         </Typography>
       ))}
       <button type="button" onClick={handleCartClick}>
-      {React.createElement(ShoppingCartIcon, {className: "w-[18px] h-[18px] opacity-75 mr-1 text-black hover:text-custom-primary hover:cursor-pointer active:text-custom-primary"})}
+        {React.createElement(ShoppingCartIcon, {className: "w-[18px] h-[18px] opacity-75 mr-1 text-black hover:text-custom-primary hover:cursor-pointer active:text-custom-primary"})}
       </button>
     </ul>
-  );
+  );  
 
   return (
     <MTNavbar color="transparent" className="p-0">

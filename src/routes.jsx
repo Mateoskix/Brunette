@@ -1,4 +1,4 @@
-import { Inicio, Nosotros, Menu, SignUp } from "@/pages";
+import { Inicio, Nosotros, Menu, Checkout } from "@/pages";
 
 export const routes = [
   {
@@ -13,8 +13,13 @@ export const routes = [
   },
   {
     name: "Menu",
-    path: "/Menu",
+    path: "/menu",
     element: <Menu />,
+  },
+  {
+    name: "Checkout",
+    path: "/checkout",
+    element: <Checkout />,
   },
 ];
 
