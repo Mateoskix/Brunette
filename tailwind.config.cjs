@@ -16,5 +16,7 @@ module.exports = withMT({
       'custom-primary':'#B17F4A',
     },},
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/aspect-ratio'),
+  ],
 });
