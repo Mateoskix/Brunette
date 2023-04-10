@@ -3,19 +3,12 @@ import { SimpleFooter } from "@/widgets/layout";
 export function Checkout() {
   return (
     <>
+    <div className="flex justify-center items-center h-screen">
       <div className="absolute inset-0 z-0 h-full w-full bg-white" /> {/* ESTO OCULTA LA NAVBAR */}
-      <section className="absolute justify-">
-        <h1 className="sr-only">Checkout</h1>
-
-        <div className="mx-auto grid max-w-screen-2xl grid-cols-1 md:grid-cols-2">
+      <section className="absolute">
+        <div className="grid max-w-screen-2xl grid-cols-1 md:grid-cols-2">
           <div className="bg-gray-50 py-12 md:py-24">
             <div className="mx-auto max-w-lg space-y-8 px-4 lg:px-8">
-              <div className="flex items-center gap-4">
-                <span className="h-10 w-10 rounded-full bg-blue-700"></span>
-
-                <h2 className="font-medium text-gray-900">BambooYou</h2>
-              </div>
-
               <div>
                 <p className="text-2xl font-medium tracking-tight text-gray-900">
                   $99.99
@@ -227,6 +220,7 @@ export function Checkout() {
           </div>
         </div>
       </section>
+      </div>
     </>
   );
 }
