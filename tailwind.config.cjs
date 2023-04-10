@@ -14,6 +14,7 @@ module.exports = withMT({
       },
       colors: {
       'custom-primary':'#B17F4A',
+      'custom-secundary':'#E94E1B',
     },},
   },
   plugins: [
