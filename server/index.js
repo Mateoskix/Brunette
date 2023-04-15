@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Configurar la ruta principal
 app.get('/', (req, res) => {
-    res.sendFile(path.resolve('../Brunette/index.html'));
+    res.sendFile(path.resolve('../index.html'));
   });
 
 // Definición de la ruta POST /cart
