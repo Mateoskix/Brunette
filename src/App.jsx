@@ -10,6 +10,14 @@ function App() {
 
   const handleCartClick = () => {
     setShowCart(!showCart);
+    // Enviamos el valor de la variable showCart al backend
+    axios.post('http://localhost:3000/cart', { showCart })
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
   };
 
   useEffect(() => {
