@@ -1,13 +1,12 @@
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
-import routerApi from './app/routers'
+import routerApi from '../app/routers/index.js';
 const router = express.Router();
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const app = express();
-//import shoppingCar from './app/routers/shoppingCar.js';
 
-
+routerApi(app);
 
 // Servir archivos estáticos desde la carpeta 'public'
 app.use(express.static(path.join('../public/css')));
@@ -32,7 +31,8 @@ app.get('/cart', (req, res) => {
     </html>
   `);
 });
-//routerApi(app);
+
+
 // Iniciar el servidor
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
