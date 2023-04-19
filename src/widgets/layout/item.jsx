@@ -73,7 +73,7 @@ export function Example() {
                     </div>
                     
                   </div>
-                  <div className="min-h-40 aspect-h-1 aspect-w-1 w-40 overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-40">
+                  <div className="min-h-40 aspect-h-1 aspect-w-1.8 w-40 overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-40">
                     <img
                       src={product.url}
                       alt={product.imageAlt}

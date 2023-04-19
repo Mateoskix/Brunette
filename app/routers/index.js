@@ -1,7 +1,7 @@
-import productos from ('./productos');
+import productos from './productos.js';
 
 function routerApi(app){
     app.use('/productos', productos);
 }
 
-module.exports = routerApi;
+export default routerApi;

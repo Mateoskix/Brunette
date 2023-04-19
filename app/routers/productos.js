@@ -1,19 +1,18 @@
 import express from 'express';
 const router = express.Router()
-const path = 'shoppingCar'
 //import controller from '/../controllers/shoppingcar';
 
-router.get('/', (req, res) => {
-    const products = [
-        {nombre : 'goyurt',
+router.get('/productos', (req, res) => {
+    const productos = [
+        {nombre : 'helado',
         cantidad : 1,
         id: 123
         },
-        {nombre : 'goyurt',
+        {nombre : 'helado',
         cantidad : 1,
         id: 123
         },
-        {nombre : 'goyurt',
+        {nombre : 'helado',
         cantidad : 1,
         id: 123
         }
@@ -21,4 +20,4 @@ router.get('/', (req, res) => {
     res.json(productos);
 });
 
-module.exports = router;
+export default router;
