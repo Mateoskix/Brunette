@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Card,
   CardBody,
@@ -12,12 +11,24 @@ import {
 import { UsersIcon } from "@heroicons/react/24/solid";
 import { Footer } from "@/widgets/layout";
 import { Example } from "@/widgets/layout/item";
+import React, {useState, useEffect} from 'react';
 
 export function Menu() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch('http://localhost:3000/productos');
+      const data = await response.json();
+      setProducts(data);
+    }
+    fetchData();
+  }, []);
+
   return (
     <>
       <div>
-        <Example></Example>
+         <Example products={products} />
       </div>
       <div className="bg-custom-primary">
         <Footer />
