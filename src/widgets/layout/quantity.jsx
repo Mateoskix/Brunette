@@ -4,11 +4,15 @@ export function CustomNumberInput() {
   const [value, setValue] = useState(0);
 
   const decrement = () => {
-    setValue(value - 1);
+    if (value > 0) {
+      setValue(value - 1);
+    }
+    console.log("Valor actual de value:", value);
   };
 
   const increment = () => {
     setValue(value + 1);
+    console.log("Valor actual de value:", value);
   };
 
   return (
@@ -26,7 +30,24 @@ export function CustomNumberInput() {
           className="outline-none focus:outline-none text-center w-8 bg-gray-300 font-semibold text-md hover:text-black focus:text-black md:text-base cursor-default flex items-center text-gray-700 outline-none custom-bg-white"
           name="custom-input-number"
           value={value}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={(e) => {
+            const newValue = e.target.value;
+            if (newValue >= 0) {
+              setValue(newValue);
+              console.log("Valor actual de value:", value);
+            }
+          }}
+          onKeyDown={(e) => e.preventDefault()}
+          onWheel={(e) => e.preventDefault()}
+          readOnly
+          style={{ 
+            "&::-webkit-outer-spin-button, &::-webkit-inner-spin-button": {
+              "-webkit-appearance": "none",
+              margin: 0,
+            },
+            "-moz-appearance": "textfield",
+            margin: 0,
+          }}
         />
         <button
           data-action="increment"

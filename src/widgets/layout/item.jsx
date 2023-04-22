@@ -1,55 +1,5 @@
 import { CustomNumberInput } from "@/widgets/layout/quantity";
 
-/* const products = [
-  {
-    id: 1,
-    name: 'QUESANETTA',
-    href: '#',
-    url: 'img/producto4.JPG',
-    imageAlt: "Desde 2018",
-    price: '$6.800',
-    color: 'Mediano',
-  },
-  {
-    id: 2,
-    name: 'QUESANETTA',
-    href: '#',
-    url: 'img/producto4.JPG',
-    imageAlt: "Maravilloso.",
-    price: '$6.800',
-    color: 'Mediano',
-  },
-  {
-    id: 3,
-    name: 'QUESANETTA',
-    href: '#',
-    url: 'img/producto4.JPG',
-    imageAlt: "Maravilloso.",
-    price: '$6.800',
-    color: 'Mediano',
-  },
-  {
-    id: 4,
-    name: 'QUESANETTA',
-    href: '#',
-    url: 'img/producto4.JPG',
-    imageAlt: "Maravilloso.",
-    price: '$6.800',
-    color: 'Mediano',
-  },
-  {
-    id: 5,
-    name: 'QUESANETTA',
-    href: '#',
-    url: 'img/producto4.JPG',
-    imageAlt: "Maravilloso.",
-    price: '$6.800',
-    color: 'Mediano',
-  },
-
-  
-] */
-
 export function Example (props) {
   const { products } = props;
 
