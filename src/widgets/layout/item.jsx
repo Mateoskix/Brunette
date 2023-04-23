@@ -1,7 +1,15 @@
 import { CustomNumberInput } from "@/widgets/layout/quantity";
+import React, { useState } from 'react';
+
 
 export function Example (props) {
   const { products } = props;
+  const [productos_cantidad, setProductosCantidad] = useState([]);
+  const handleProductosCantidadChange = (index, cantidad) => {
+    const newProductosCantidad = [];
+    newProductosCantidad[index] = { 'cantidad []':cantidad };
+    setProductosCantidad(newProductosCantidad);
+  }
 
   return (
         <div className="bg-white">
@@ -21,7 +29,7 @@ export function Example (props) {
                       </h3>
                       <p className="mt-1 text-sm text-gray-500">{product.color}</p>
                       <p className="text-sm font-medium text-gray-900">{product.price}</p>
-                      <CustomNumberInput></CustomNumberInput>
+                      <CustomNumberInput onChange={(cantidad) => handleProductosCantidadChange(index, cantidad)} />
                     </div>
                     
                   </div>

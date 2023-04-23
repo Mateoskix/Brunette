@@ -1,18 +1,21 @@
 import { useState } from "react";
 
-export function CustomNumberInput() {
+export function CustomNumberInput({onChange}) {
   const [value, setValue] = useState(0);
 
   const decrement = () => {
     if (value > 0) {
-      setValue(value - 1);
+      const newValue = value - 1;
+      setValue(newValue);
+      onChange(newValue);
     }
     console.log("Valor actual de value:", value);
   };
 
   const increment = () => {
-    setValue(value + 1);
-    console.log("Valor actual de value:", value);
+    const newValue = value + 1;
+      setValue(newValue);
+      onChange(newValue);
   };
 
   return (
@@ -34,6 +37,7 @@ export function CustomNumberInput() {
             const newValue = e.target.value;
             if (newValue >= 0) {
               setValue(newValue);
+              onChange(newValue);
               console.log("Valor actual de value:", value);
             }
           }}
