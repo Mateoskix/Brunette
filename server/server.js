@@ -6,6 +6,9 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const app = express();
 let cartItems = [];
 
+
+app.use(bodyParser.json());
+
 //acceso desde cualquier dominio
 app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
