@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 const router = express.Router();
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const app = express();
+let cartItems = [];
 
 //acceso desde cualquier dominio
 app.use(function(req, res, next) {
@@ -58,10 +59,16 @@ app.get('/productos',(req,res)=>{
   res.json(productos);
 });
 app.post('/cart', (req, res) => {
-  
+  const { name, quantity, price } = req.body;
+  console.log(`Producto: ${name}, Cantidad: ${quantity}, Precio: ${price}`);
+  //res.send(`Producto: ${name}, Cantidad: ${quantity},  Precio: ${price}`);
+  const newItem = { name, quantity, price };
+  cartItems.push(newItem);
+  res.sendStatus(200);
+
 });
 app.get('/cart', (req, res) => {
-  res.json(productos);
+  res.send(cartItems);
 });
 
 
