@@ -9,13 +9,7 @@ export function CustomNumberInput({onChange}) {
       const newValue = value - 1;
       setValue(newValue);
       onChange(newValue);
-  
-      // Hacer una solicitud POST a la URL del backend
-      fetch('/shoppingcar', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: productName, quantity: newValue })
-      });
+
     }
   };
 
@@ -44,7 +38,7 @@ export function CustomNumberInput({onChange}) {
         </button>
         <input
           type="number"
-          className="outline-none focus:outline-none text-center w-8 bg-gray-300 font-semibold text-md hover:text-black focus:text-black md:text-base cursor-default flex items-center text-gray-700 outline-none custom-bg-white"
+          className="focus:outline-none text-center w-8 bg-gray-300 font-semibold text-md hover:text-black focus:text-black md:text-base cursor-default flex items-center text-gray-700 outline-none custom-bg-white"
           name="custom-input-number"
           value={value}
           onChange={(e) => {

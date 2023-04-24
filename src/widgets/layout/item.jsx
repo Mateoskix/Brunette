@@ -6,11 +6,19 @@ export function Example (props) {
   const { products } = props;
   const [value, setValue] = useState(0);
   const [producto, setProducto] = useState([]);
+  const [item, setItem] = useState([]);
   const handleQuantityChange = (product) => (value1) => {
     setValue(value1);
     setProducto(product);
     console.log("Producto:", producto.name, "Cantidad:", value);
   }
+
+  //Hacer solicitud fetch POST al server
+  /* fetch('/cart', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name: productName, quantity: newValue })
+  }); */
 
   return (
     <div className="bg-white">
@@ -31,6 +39,7 @@ export function Example (props) {
                   <p className="mt-1 text-sm text-gray-500">{product.color}</p>
                   <p className="text-sm font-medium text-gray-900">{product.price}</p>
                   <CustomNumberInput onChange={handleQuantityChange(product)} />
+                  <button className="rounded bg-custom-primary px-1 py-3 font-bunya-bold">Agregar</button>
                 </div>
               </div>
               <div className="min-h-40 aspect-h-1 aspect-w-1.8 w-40 overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-40">

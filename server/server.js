@@ -57,11 +57,11 @@ app.get('/', (req, res) => {
 app.get('/productos',(req,res)=>{
   res.json(productos);
 });
-app.post('/shoppingcar', (req, res) => {
+app.post('/cart', (req, res) => {
   
 });
-app.get('/shoppingcar', (req, res) => {
-  'hola';
+app.get('/cart', (req, res) => {
+  res.json(productos);
 });
 
 
