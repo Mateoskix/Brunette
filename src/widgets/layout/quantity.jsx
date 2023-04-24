@@ -3,19 +3,33 @@ import { useState } from "react";
 export function CustomNumberInput({onChange}) {
   const [value, setValue] = useState(0);
 
+
   const decrement = () => {
     if (value > 0) {
       const newValue = value - 1;
       setValue(newValue);
       onChange(newValue);
+  
+      // Hacer una solicitud POST a la URL del backend
+      fetch('/shoppingcar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: productName, quantity: newValue })
+      });
     }
-    console.log("Valor actual de value:", value);
   };
 
   const increment = () => {
     const newValue = value + 1;
-      setValue(newValue);
-      onChange(newValue);
+    setValue(newValue);
+    onChange(newValue);
+  
+    /* // Hacer una solicitud POST a la URL del backend
+    fetch('/shoppingcar', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: productName, quantity: newValue })
+    }); */
   };
 
   return (

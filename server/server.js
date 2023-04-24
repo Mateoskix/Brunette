@@ -1,7 +1,6 @@
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
-import { CustomNumberInput } from "@/widgets/layout/quantity";
 const router = express.Router();
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const app = express();
@@ -18,7 +17,7 @@ app.use(function(req, res, next) {
 const productos = [
   {
     id: 1,
-    name: 'QUESANETTA',
+    name: 'Dulce',
     href: '#',
     url: 'img/producto4.JPG',
     imageAlt: "Desde 2018",
@@ -36,7 +35,7 @@ const productos = [
   },
   {
     id: 3,
-    name: 'QUESANETTA',
+    name: 'Helado',
     href: '#',
     url: 'img/producto4.JPG',
     imageAlt: "Maravilloso.",
@@ -52,10 +51,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Configurar la ruta principal
 app.get('/', (req, res) => {
-res.json(productos);
+  'hola';
 });
+
 app.get('/productos',(req,res)=>{
   res.json(productos);
+});
+app.post('/shoppingcar', (req, res) => {
+  
+});
+app.get('/shoppingcar', (req, res) => {
+  'hola';
 });
 
 
