@@ -1,10 +1,20 @@
-import React from "react";
 import { PageTitle, Footer } from "@/widgets/layout";
 import { FeatureCard, TeamCard } from "@/widgets/cards";
 import { featuresData, teamData, contactData } from "@/data";
 import PhotoCarousel from "@/widgets/layout/carousel";
+import React, { useState, useEffect } from 'react';
 
 export function Inicio() {
+  const [sedes, setSedes] = useState([]);
+  const [selectedSede, setSelectedSede] = useState(null);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch('http://localhost:3000/sedes');
+      const data = await response.json();
+      setSedes(data);
+    }
+    fetchData();
+  }, []);
   return (
     <>
       <div className="mb-10">
@@ -30,23 +40,22 @@ export function Inicio() {
       </section>
 
       <section className="relative bg-blue-gray-50/50 py-10 px-4">
-      <PageTitle heading="Nuestras Ubicaciones"></PageTitle>
+        <PageTitle heading="Nuestras Ubicaciones"></PageTitle>
         <div className="mt-10 flex flex-row justify-center">
           <div className="flex flex-col mr-3">
-            <button
-              type="button"
-              className="mt-3 w-full h-9 justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-custom-primary sm:mt-0 sm:w-auto"
-            >
-              Sede 1
-            </button>
-            <button
-              type="button"
-              className="mt-3 w-full h-9 justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-custom-primary sm:mt-0 sm:w-auto"
-            >
-              Sede 2
-            </button>
+            {sedes.map((sede) => (
+              <button
+                key={sede.id}
+                type="button"
+                className={`mt-3 w-full h-9 justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 ${selectedSede && selectedSede.id === sede.id ? 'bg-custom-primary text-white' : 'text-gray-900 hover:bg-custom-primary'
+                  } sm:mt-0 sm:w-auto`}
+                onClick={() => setSelectedSede(sede)}
+              >
+                {sede.id}
+              </button>
+            ))}
           </div>
-          <iframe className="w-[1000px] h-[520px]" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3923.3759099296744!2d-73.26948398593512!3d10.47100339252922!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e8ab91d21490f7b%3A0xcf64425419f55be1!2sBrunette%20Artesanal%20(Garupal)!5e0!3m2!1sen!2sco!4v1680560835554!5m2!1sen!2sco" allowFullScreen={true} />
+          <iframe className="w-[1000px] h-[520px]" src={selectedSede ? selectedSede.url : ''} allowFullScreen={true} />
         </div>
       </section>
       <div className="bg-custom-primary">
