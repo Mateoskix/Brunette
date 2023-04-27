@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 export function Inicio() {
   const [sedes, setSedes] = useState([]);
   const [selectedSede, setSelectedSede] = useState(null);
+  const [isSedeSelected, setIsSedeSelected] = useState(false);
   useEffect(() => {
     async function fetchData() {
       const response = await fetch('http://localhost:3000/sedes');
@@ -49,13 +50,23 @@ export function Inicio() {
                 type="button"
                 className={`mt-3 w-full h-9 justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 ${selectedSede && selectedSede.id === sede.id ? 'bg-custom-primary text-white' : 'text-gray-900 hover:bg-custom-primary'
                   } sm:mt-0 sm:w-auto`}
-                onClick={() => setSelectedSede(sede)}
+                  onClick={() => {
+                    setSelectedSede(sede);
+                    setIsSedeSelected(true);
+                  }}                  
               >
-                {sede.id}
+                Sede {sede.id}
               </button>
             ))}
           </div>
+          {!isSedeSelected && (
+          <p className="text-center text-gray-900 font-semibold mt-4">
+            Selecciona una sede para ver su información.
+          </p>
+        )}
+          {isSedeSelected && (
           <iframe className="w-[1000px] h-[520px]" src={selectedSede ? selectedSede.url : ''} allowFullScreen={true} />
+          )}
         </div>
       </section>
       <div className="bg-custom-primary">
