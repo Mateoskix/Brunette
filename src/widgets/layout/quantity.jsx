@@ -27,11 +27,10 @@ export function CustomNumberInput({onChange}) {
   };
 
   return (
-    <div className="custom-number-input h-8 w-20 custom-bg-white">
-      <div className="flex flex-row h-8 w-13 rounded-lg relative bg-transparent mt-3">
+      <div className="flex flex-row h-8 w-13 rounded-md relative bg-transparent mt-3">
         <button
           data-action="decrement"
-          className="bg-gray-300 text-center text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-8 w-10 rounded-l cursor-pointer outline-none custom-bg-white "
+          className="bg-gray-300 text-center text-gray hover:text-custom-secundary hover:bg-gray-400 h-8 w-10 rounded-l cursor-pointer outline-none custom-bg-white "
           onClick={decrement}
         >
           <span className="m-auto text-2xl font-thin">−</span>
@@ -63,13 +62,12 @@ export function CustomNumberInput({onChange}) {
         />
         <button
           data-action="increment"
-          className="bg-gray-300 text-center text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-8 w-10 rounded-r cursor-pointer custom-bg-white"
+          className="bg-gray-300 text-center text-gray-600 hover:text-custom-secundary hover:bg-gray-400 h-8 w-10 rounded-r cursor-pointer custom-bg-white"
           onClick={increment}
         >
           <span className="m-auto text-2xl font-thin">+</span>
         </button>
       </div>
-    </div>
   );
   
 }
