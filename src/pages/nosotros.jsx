@@ -5,9 +5,30 @@ import {
   BuildingLibraryIcon,
 } from "@heroicons/react/24/solid";
 import { Footer } from "@/widgets/layout";
+import config from '../../server/config.js';
+import sqlConnection from '../../server/sql.js';
+const sql = new sqlConnection(config.connectionSQL);
 
 export function Nosotros() {
+  "use strict";
+
+  console.log('Entro');
+
+
+
+
+  (async () => {
+    try {
+      let select = await sql.select("Productos");
+      console.log(select.recordset);
+    } catch (error) {
+      sql.close();
+      console.log(error);
+      return
+    }
+  })();
   return (
+
     <>
       <section className="relative block h-[230vh]">
         <div className="bg-profile-background absolute top-0 h-full w-full bg-[url('/img/local_todos.JPG')] bg-cover bg-center" />
@@ -16,19 +37,19 @@ export function Nosotros() {
           <div className="text-white mt-10 text-8xl font-roulette">Sobre Nosotros...</div>
           <div className="text-white text-4xl font-roulette">#Brunettelovers</div>
         </div>
-        
+
         <div className=" sm:py-48">
           <div className=" mx-auto max-w-6xl px-6 lg:px-10">
             <div className="mx-auto mt-16">
-            <hr className="my-20" />
+              <hr className="my-20" />
               <div className="grid  grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-10 ">
                 <div className="relative flex flex-col justify-center items-center">
-                  <img src="/img/atendiendo.jpg"  />
+                  <img src="/img/atendiendo.jpg" />
                 </div>
-                
+
                 <div className="relative flex flex-col justify-center text-left items-center">
-                  <div className="mt-2 font-lemon leading-7 text-gray-300">Desde 2018, dejando el corazón en cada producto. Nuestra misión es entregarlo todo, ofrecer lo mejor, porque cada detalle merece ser pensado, cada sueño merece ser cumplido, por eso perseveramos. Poco a poco vamos construyendo nuestra historia. Gracias por acompañarnos en el camino. 
-                  <br /><br /> Participamos activamente en las mejores ferias, de valledupar, destacándonos por nuestra forma dinámica de servirle a nuestros clientes, lo que nos ha permitido crecer de manera exponencial en nuestras plataformas digitales. Hoy contamos con una comunidad de más de 16.000 seguidores.</div>
+                  <div className="mt-2 font-lemon leading-7 text-gray-300">Desde 2018, dejando el corazón en cada producto. Nuestra misión es entregarlo todo, ofrecer lo mejor, porque cada detalle merece ser pensado, cada sueño merece ser cumplido, por eso perseveramos. Poco a poco vamos construyendo nuestra historia. Gracias por acompañarnos en el camino.
+                    <br /><br /> Participamos activamente en las mejores ferias, de valledupar, destacándonos por nuestra forma dinámica de servirle a nuestros clientes, lo que nos ha permitido crecer de manera exponencial en nuestras plataformas digitales. Hoy contamos con una comunidad de más de 16.000 seguidores.</div>
                   <div className="mt-2 font-lemon leading-7 text-gray-300"></div>
                 </div>
 
@@ -39,13 +60,13 @@ export function Nosotros() {
                   <div className="mt-2 font-lemon leading-7 text-gray-300"> Brunette Artesanal, es reconocido por elaborar un yogurt gourmet, que tiene como características especiales su sabor, consistencia, textura suave al paladar y su versatilidad para ser combinado con diferentes toppings, siendo pioneros en esta manera diferente de consumir yogurt. <br /><br /></div>
                   <div className="mt-2 font-roulette text-4xl leading-7 text-gray-300">¡NUESTROS PRODUCTOS!</div>
                   <div className="mt-2 font-lemon leading-7 text-gray-300">Nuestra estrella, el yogurt natural brunette... el que con todo combina, de él se desprenden los diferentes productos que ofrecemos a nuestro público! teniendo opciones como “ARMA TU BRUNETTE” que amplía las posibilidades a nuevas experiencias.</div>
-                </div>                
+                </div>
 
                 <div className="relative flex flex-col justify-center items-center">
                   <img src="/img/producto-tentacion.jpg" width="70%" />
-                </div>                            
+                </div>
               </div>
-            </div>            
+            </div>
           </div>
         </div>
         <div className="relative -top-20 left-0  flex flex-col justify-start items-center">
@@ -57,7 +78,11 @@ export function Nosotros() {
         <Footer />
       </div>
     </>
+
   );
+
+
 }
 
 export default Nosotros;
+
