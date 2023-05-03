@@ -1,34 +1,7 @@
-import { Avatar, Typography, Button } from "@material-tailwind/react";
-import {
-  MapPinIcon,
-  BriefcaseIcon,
-  BuildingLibraryIcon,
-} from "@heroicons/react/24/solid";
 import { Footer } from "@/widgets/layout";
-import config from '../../server/config.js';
-import sqlConnection from '../../server/sql.js';
-const sql = new sqlConnection(config.connectionSQL);
 
 export function Nosotros() {
-  "use strict";
-
-  console.log('Entro');
-
-
-
-
-  (async () => {
-    try {
-      let select = await sql.select("Productos");
-      console.log(select.recordset);
-    } catch (error) {
-      sql.close();
-      console.log(error);
-      return
-    }
-  })();
   return (
-
     <>
       <section className="relative block h-[230vh]">
         <div className="bg-profile-background absolute top-0 h-full w-full bg-[url('/img/local_todos.JPG')] bg-cover bg-center" />

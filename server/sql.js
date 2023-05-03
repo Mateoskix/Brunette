@@ -2,7 +2,7 @@
 
 import mssql from 'mssql';
 
-module.exports = class Sql {
+class Sql {
     constructor(stringConnection) {
         this.stringConnection = stringConnection;
     }

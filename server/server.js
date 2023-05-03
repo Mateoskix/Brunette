@@ -1,6 +1,8 @@
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
+import Sql from './sql.js';
+import config from './config.js';
 const router = express.Router();
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const app = express();
@@ -18,6 +20,10 @@ app.use(function(req, res, next) {
   next();
 });
 
+const sql = new Sql(config.connectionSQL);
+
+let productos = sql.select("Productos");
+
 const sedes = [
   {
     id: 1,
@@ -29,35 +35,6 @@ const sedes = [
   }
 ]
 
-const productos = [
-  {
-    id: 1,
-    name: 'Dulce',
-    href: '#',
-    url: 'img/producto4.jpg',
-    imageAlt: "Desde 2018",
-    price: '$6.800',
-    color: 'Mediano',
-  },
-  {
-    id: 2,
-    name: 'QUESANETTA',
-    href: '#',
-    url: 'img/producto4.jpg',
-    imageAlt: "Maravilloso.",
-    price: '$6.800',
-    color: 'Mediano',
-  },
-  {
-    id: 3,
-    name: 'Helado',
-    href: '#',
-    url: 'img/producto4.jpg',
-    imageAlt: "Maravilloso.",
-    price: '$6.800',
-    color: 'Mediano',
-  }
-];
 
 // Servir archivos estáticos desde la carpeta 'public'
 app.use(express.static(path.join('../public/css')));
