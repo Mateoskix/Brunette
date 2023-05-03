@@ -27,17 +27,17 @@ export function CustomNumberInput({onChange}) {
   };
 
   return (
-      <div className="flex flex-row h-8 w-13 rounded-md relative bg-transparent mt-3">
+      <div className="flex flex-row h-6 w-13 relative bg-white mt-3 rounded-full">
         <button
           data-action="decrement"
-          className="bg-gray-300 text-center text-gray hover:text-custom-secundary hover:bg-gray-400 h-8 w-10 rounded-l cursor-pointer outline-none custom-bg-white "
+          className="bg-gray-300 text-center text-gray-600 hover:text-custom-secundary hover:bg-gray-400 h-6 w-10 rounded-l-full cursor-pointer outline-none custom-bg-white "
           onClick={decrement}
         >
-          <span className="m-auto text-2xl font-thin">−</span>
+          <span className="m-auto text-xl font-thin">−</span>
         </button>
         <input
           type="number"
-          className="focus:outline-none text-center w-8 bg-gray-300 font-semibold text-md hover:text-black focus:text-black md:text-base cursor-default flex items-center text-gray-700 outline-none custom-bg-white"
+          className="focus:outline-none text-center w-8 bg-gray-300 font-semibold text-md hover:text-black focus:text-black md:text-base cursor-default flex items-center text-custom-secundary outline-none custom-bg-white"
           name="custom-input-number"
           value={value}
           onChange={(e) => {
@@ -62,10 +62,10 @@ export function CustomNumberInput({onChange}) {
         />
         <button
           data-action="increment"
-          className="bg-gray-300 text-center text-gray-600 hover:text-custom-secundary hover:bg-gray-400 h-8 w-10 rounded-r cursor-pointer custom-bg-white"
+          className="bg-gray-300 text-center text-gray-600 hover:text-custom-secundary hover:bg-gray-400 h-6 w-10 rounded-r-full cursor-pointer custom-bg-white"
           onClick={increment}
         >
-          <span className="m-auto text-2xl font-thin">+</span>
+          <span className="m-auto text-xl font-thin">+</span>
         </button>
       </div>
   );
