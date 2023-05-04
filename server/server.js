@@ -1,8 +1,7 @@
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
-import Sql from './sql.js';
-import config from './config.js';
+import mssql from 'mssql';
 const router = express.Router();
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const app = express();
@@ -11,8 +10,48 @@ let cartItems = [];
 
 app.use(bodyParser.json());
 
+var sql = mssql;
+
+// config for your database
+var config = {
+  user: 'Brunette',
+  password: 'Brunette',
+  server: 'localhost',
+  database: 'Brunette',
+  options: {
+    trustedConnection: true,
+    encrypt: true,
+    enableArithAbort: true,
+    trustServerCertificate: true,
+
+  },
+};
+
+app.get('/', function (req, res) {
+
+  // connect to your database
+  sql.connect(config, function (err) {
+
+    if (err) console.log(err);
+
+    // create Request object
+    var request = new sql.Request();
+
+    // query to the database and get the records
+    request.query('select * from Productos', function (err, recordset) {
+
+      if (err) console.log(err)
+
+      // send records as a response
+      res.send(recordset);
+
+    });
+  });
+});
+
+
 //acceso desde cualquier dominio
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
@@ -20,9 +59,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-const sql = new Sql(config.connectionSQL);
 
-let productos = sql.select("Productos");
 
 const sedes = [
   {
@@ -46,11 +83,28 @@ app.get('/', (req, res) => {
   'hola';
 });
 
-app.get('/productos',(req,res)=>{
+app.get('/productos', (req, res) => {
+  sql.connect(config, function (err) {
+
+    if (err) console.log(err);
+
+    // create Request object
+    var request = new sql.Request();
+
+    // query to the database and get the records
+    request.query('select * from Productos', function (err, recordset) {
+
+      if (err) console.log(err)
+
+      // send records as a response
+      res.send(recordset);
+
+    });
+  });
   res.json(productos);
 });
 
-app.get('/sedes',(req,res)=>{
+app.get('/sedes', (req, res) => {
   res.json(sedes);
 });
 
