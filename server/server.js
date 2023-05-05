@@ -17,18 +17,6 @@ var sql = mssql;
 
 //prueba
 app.use('api', routesProd);
-const getProducts = async ()=> {
-  try{
-    let pool = await sql.connect(config);
-    const sqlQueries = await loadSqlQueries("events");
-    const list = await pool.request().query(sqlQueries.select);
-    return list.recordset;
-  }catch(error){
-    return error.message;
-  }
-}
-
-export default getProducts;
 // config for your database
 var config = {
   user: 'Brunette',

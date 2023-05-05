@@ -1,14 +1,12 @@
 'use strict';
 import loadSqlQueries from './../utils.js';
-import Request  from 'mssql';
-import config from './../../server/config.js';
-import sql from 'mssql';
+import pool from './../../server/config.js';
 
 const getEvents = async () => {
     try {
-        let pool = await sql.connect(config);
-        const sqlQueries = await loadSqlQueries('Productos');
-        const eventsList = await pool.catch().query(sqlQueries.eventslist);
+        let Pool = await pool;
+        const sqlQueries = await loadSqlQueries('events');
+        const eventsList = await Pool.request().query(sqlQueries.select);
         return eventsList.recordset;
     } catch (error) {
         console.log(error.message);

@@ -5,6 +5,7 @@ import join from 'path';
 
 const loadSqlQueries = async (folderName) => {
     const filePath = join(process.cwd(), 'data', folderName);
+    console.log(process.cwd());
     const files = await fs.readdir(filePath);
     const sqlFiles = await files.filter(f => f.endsWith('.sql'));
     const queries = {};
