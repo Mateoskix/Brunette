@@ -2,16 +2,33 @@ import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
 import mssql from 'mssql';
+import routesProd from './../routes/productsRoutes.js';
+import loadSqlQueries from './../data/utils.js';
 const router = express.Router();
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const app = express();
 let cartItems = [];
 
-
+app.use(cors());
 app.use(bodyParser.json());
 
 var sql = mssql;
 
+
+//prueba
+app.use('api', routesProd);
+const getProducts = async ()=> {
+  try{
+    let pool = await sql.connect(config);
+    const sqlQueries = await loadSqlQueries("events");
+    const list = await pool.request().query(sqlQueries.select);
+    return list.recordset;
+  }catch(error){
+    return error.message;
+  }
+}
+
+export default getProducts;
 // config for your database
 var config = {
   user: 'Brunette',
@@ -97,11 +114,9 @@ app.get('/productos', (req, res) => {
       if (err) console.log(err)
 
       // send records as a response
-      res.send(recordset);
-
+      res.json(recordset);
     });
   });
-  res.json(productos);
 });
 
 app.get('/sedes', (req, res) => {
