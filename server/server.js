@@ -1,57 +1,35 @@
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
-import mssql from 'mssql';
-import routesProd from './../routes/productsRoutes.js';
-import loadSqlQueries from './../data/utils.js';
-const router = express.Router();
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
+import config from './config.js';
+//import { cors } from 'cors';
+import { Connection } from 'tedious';
 const app = express();
 let cartItems = [];
 
-app.use(cors());
-app.use(bodyParser.json());
-
-var sql = mssql;
-
-
-//prueba
-app.use('api', routesProd);
-// config for your database
-var config = {
-  user: 'Brunette',
-  password: 'Brunette',
-  server: 'localhost',
-  database: 'Brunette',
-  options: {
-    trustedConnection: true,
-    encrypt: true,
-    enableArithAbort: true,
-    trustServerCertificate: true,
-
-  },
+//app.use(cors());
+const conf = {  
+  server: 'localhost',  //update me
+  authentication: {
+      type: 'default',
+      options: {
+          userName: 'Brunette', //update me
+          trustedConnection: true,
+          password: 'Brunette',  //update me<
+          trustServerCertificate: true,
+      },
+  }
 };
 
-app.get('/', function (req, res) {
-
-  // connect to your database
-  sql.connect(config, function (err) {
-
-    if (err) console.log(err);
-
-    // create Request object
-    var request = new sql.Request();
-
-    // query to the database and get the records
-    request.query('select * from Productos', function (err, recordset) {
-
-      if (err) console.log(err)
-
-      // send records as a response
-      res.send(recordset);
-
-    });
-  });
+app.use(bodyParser.json());
+const connection = new Connection(conf);
+//console.log(connection);
+connection.connect( function(err) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log("FUNCIONO");
+  }
 });
 
 

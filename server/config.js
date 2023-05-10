@@ -1,7 +1,14 @@
-import sql from 'mssql';
+    const config = {  
+        server: 'localhost',  //update me
+        authentication: {
+            type: 'default',
+            options: {
+                userName: 'Brunette', //update me
+                trustedConnection: true,
+                password: 'Brunette',  //update me<
+                trustServerCertificate: true,
+            },
+        }
+    };
 
-const config = { user: 'Brunette', password: 'Brunette', server: 'localhost\\SQLEXPRESS', database: 'Brunette' };
-const pool = new sql.ConnectionPool(config);
-pool.connect(err => { if (err) { console.error('Failed to connect to SQL Server Express', err); } 
-else { console.log('Connected to SQL Server Express'); } });
-export default pool;
+export default config;

@@ -1,4 +1,3 @@
-'use strict'
 import Express from 'express';
 import EventController from './../controllers/productos.js';
 const router = Express.Router();
