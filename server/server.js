@@ -3,34 +3,40 @@ import path from 'path';
 import bodyParser from 'body-parser';
 import config from './config.js';
 //import { cors } from 'cors';
-import { Connection } from 'tedious';
 const app = express();
 let cartItems = [];
+import mysql from 'mysql';
 
 //app.use(cors());
-const conf = {  
-  server: 'localhost',  //update me
-  authentication: {
-      type: 'default',
-      options: {
-          userName: 'Brunette', //update me
-          trustedConnection: true,
-          password: 'Brunette',  //update me<
-          trustServerCertificate: true,
-      },
-  }
-};
+/* const conf = {
+  user: 'Brunette', password: 'Brunette', server: 'LAPTOP-H86QRORR/MSSQLSERVER', database: 'Brunette', options: {
+    encrypt: true, // For encrypted connections 
+  },
+}; */
+
+//var mysql      = require('mysql');
+const connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : '1027660022'
+});
+
+connection.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+});
+
+connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
+  if (err) throw err;
+  console.log('The solution is: ', rows[0].solution);
+});
+
+
+
+connection.end();
 
 app.use(bodyParser.json());
-const connection = new Connection(conf);
-//console.log(connection);
-connection.connect( function(err) {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log("FUNCIONO");
-  }
-});
+
 
 
 //acceso desde cualquier dominio
