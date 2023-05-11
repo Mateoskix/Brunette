@@ -12,6 +12,7 @@ const getEvents = async () => {
         console.log(error.message);
     }
 }
+
 /* 
 const getById = async(eventId) => {
     try {

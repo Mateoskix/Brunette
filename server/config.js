@@ -1,14 +1,8 @@
-    const config = {  
-        server: 'localhost',  //update me
-        authentication: {
-            type: 'default',
-            options: {
-                userName: 'Brunette', //update me
-                trustedConnection: true,
-                password: 'Brunette',  //update me<
-                trustServerCertificate: true,
-            },
-        }
-    };
+import mysql from 'mysql';
 
-export default config;
+const connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'root',
+    password : '1027660022' //contraseña
+  });
+export default connection;

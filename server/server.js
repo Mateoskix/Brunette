@@ -1,43 +1,22 @@
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
-import config from './config.js';
-//import { cors } from 'cors';
 const app = express();
 let cartItems = [];
-import mysql from 'mysql';
+import connection from './config.js';
+import obtenerproductos from '../controllers/productos.js';
 
-//app.use(cors());
-/* const conf = {
-  user: 'Brunette', password: 'Brunette', server: 'LAPTOP-H86QRORR/MSSQLSERVER', database: 'Brunette', options: {
-    encrypt: true, // For encrypted connections 
-  },
-}; */
 
-//var mysql      = require('mysql');
-const connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '1027660022'
-});
-
-connection.connect(function(err) {
+connection.connect(function (err) {
   if (err) throw err;
   console.log("Connected!");
 });
 
-connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
-  if (err) throw err;
-  console.log('The solution is: ', rows[0].solution);
-});
+export default connection;
 
-
-
-connection.end();
+//connection.end();
 
 app.use(bodyParser.json());
-
-
 
 //acceso desde cualquier dominio
 app.use(function (req, res, next) {
@@ -72,24 +51,17 @@ app.get('/', (req, res) => {
   'hola';
 });
 
-app.get('/productos', (req, res) => {
-  sql.connect(config, function (err) {
-
-    if (err) console.log(err);
-
-    // create Request object
-    var request = new sql.Request();
-
-    // query to the database and get the records
-    request.query('select * from Productos', function (err, recordset) {
-
-      if (err) console.log(err)
-
-      // send records as a response
-      res.json(recordset);
+  app.get('/productos', (req, res) => {
+    obtenerproductos((error, results) => {
+      if (error) {
+        console.error('Error al obtener los productos:', error);
+        res.status(500).json({ error: 'Ocurrió un error al obtener los productos' });
+      } else {
+        res.json(results);
+      }
     });
   });
-});
+
 
 app.get('/sedes', (req, res) => {
   res.json(sedes);
@@ -114,4 +86,6 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Servidor escuchando en el puerto ${port}`);
 });
+
+
 
