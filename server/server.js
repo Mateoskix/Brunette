@@ -51,7 +51,7 @@ app.get('/', (req, res) => {
   'hola';
 });
 
-  app.get('/productos', (req, res) => {
+  app.get('/productos', (req, res) => { 
     obtenerproductos((error, results) => {
       if (error) {
         console.error('Error al obtener los productos:', error);

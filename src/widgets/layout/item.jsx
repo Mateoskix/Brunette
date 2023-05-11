@@ -44,10 +44,10 @@ export function Example(props) {
           {products.map((product) => (
            <div className="rounded-md p-5 flex flex-row bg-custom-variant1 bg-opacity-40 group relative justify-between">
             <div className="flex flex-col w-4/6 mr-2">
-              <p className="font-lemon text-xs text-custom-secundary">{product.name}</p>
-              <p className="font-bunya text-xs text-white">Contiene masmelos, bolitas de chocolate crocantes, salsa de frambuesa, chocolatina jet y nuestra especial crema de yogur artesanal.</p>
+              <p className="font-lemon text-xs text-custom-secundary">{product.nombre}</p>
+              <p className="font-bunya text-xs text-white">{product.descripcion}</p>
               <div className="flex flex-row items-center">
-                <p className="font-bold text-sm text-white">COP {product.price}</p>
+                <p className="font-bold text-sm text-white">COP {product.precio}</p>
                 <CustomNumberInput onChange={handleQuantityChange(product)}/>
                 <button onClick={addToCart()} className="rounded-md bg-custom-secundary px-3 py-0.5 font-bunya-bold text-white text-sm">Agregar</button>
               </div>
