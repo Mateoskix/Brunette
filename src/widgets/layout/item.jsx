@@ -54,7 +54,7 @@ export function Example(props) {
             </div>
             <div className="relative h-28 w-28 sm:h-24 sm:w-24 lg:h-28 lg:w-28 overflow-hidden border-2 rounded-md bg-gray-200 group-hover:opacity-75 order-last">
                 <img
-                  src={product.url}
+                  src={product.img}
                   alt={product.imageAlt}
                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                 />
