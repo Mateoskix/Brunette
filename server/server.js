@@ -5,6 +5,7 @@ const app = express();
 let cartItems = [];
 import connection from './config.js';
 import obtenerproductos from '../controllers/productos.js';
+import insertarOrden from '../controllers/ordenes.js';
 
 
 connection.connect(function (err) {
@@ -13,7 +14,29 @@ connection.connect(function (err) {
 });
 
 export default connection;
+/*Esto va en un post, solo es para ver que si inserte*/
+const orden = {
+  direccion: 'Calle 123, Ciudad',
+  correo: 'correo@example.com',
+  nombre_cliente: 'Juan Pérez',
+  valor: 150.99,
+  productos: 'Producto 1, Producto 2',
+  fecha: new Date(),
+  estado: 'Pendiente',
+  nota: 'Ninguna'
+};
+connection.query('USE brunette');
+insertarOrden(orden, (error, result) => {
+  if (error) {
+    console.error('Error al insertar la orden:', error);
+    //res.status(500).json({ error: 'Ocurrió un error al insertar la orden' });
+  } else {
+    console.log('Orden insertada correctamente');
+    //res.json({ message: 'Orden insertada con éxito' });
+  }
+});
 
+/*hasta aquí*/
 //connection.end();
 
 app.use(bodyParser.json());
@@ -51,21 +74,46 @@ app.get('/', (req, res) => {
   'hola';
 });
 
-  app.get('/productos', (req, res) => { 
-    obtenerproductos((error, results) => {
-      if (error) {
-        console.error('Error al obtener los productos:', error);
-        res.status(500).json({ error: 'Ocurrió un error al obtener los productos' });
-      } else {
-        res.json(results);
-      }
-    });
+app.get('/productos', (req, res) => {
+  obtenerproductos((error, results) => {
+    if (error) {
+      console.error('Error al obtener los productos:', error);
+      res.status(500).json({ error: 'Ocurrió un error al obtener los productos' });
+    } else {
+      res.json(results);
+    }
   });
-
-
-app.get('/sedes', (req, res) => {
-  res.json(sedes);
 });
+
+
+
+
+// Ruta para crear un nuevo usuario
+/*
+app.post('/ordenes', (req, res) => {
+  // Datos de la orden que deseas insertar
+  const orden = {
+    direccion: 'Calle 123, Ciudad',
+    correo: 'correo@example.com',
+    nombre_cliente: 'Juan Pérez',
+    valor: 150.99,
+    productos: 'Producto 1, Producto 2',
+    fecha: new Date(),
+    estado: 'Pendiente',
+    nota: 'Ninguna'
+  };
+  connection.query('USE brunette');
+  insertarOrden(orden, (error, result) => {
+    if (error) {
+      console.error('Error al insertar la orden:', error);
+      res.status(500).json({ error: 'Ocurrió un error al insertar la orden' });
+    } else {
+      console.log('Orden insertada correctamente');
+      res.json({ message: 'Orden insertada con éxito' });
+    }
+  });
+});
+*/
 
 app.post('/cart', (req, res) => {
   const { name, quantity, price } = req.body;

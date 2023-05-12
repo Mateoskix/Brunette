@@ -4,8 +4,10 @@ import { Connection } from 'mysql'; */
 import connection from '../server/config.js';
 
 //const connection = require('../database'); // Importa tu objeto de conexión 
-// Consulta para obtener todos los usuarios 
-function obtenerproductos(callback) { connection.query('SELECT * FROM brunette.productos;', callback); } // Consulta para insertar un nuevo usuario 
+// Consulta para obtener todos los productos
+function obtenerproductos(callback) { 
+    connection.query('SELECT * FROM brunette.productos;', callback);
+}  
 
-export default obtenerproductos ;
+export default obtenerproductos;
 
