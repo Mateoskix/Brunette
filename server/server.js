@@ -78,16 +78,22 @@ app.get('/sedes',(req,res)=>{
 });
 
 app.post('/cart', (req, res) => {
-  const { name, quantity, price } = req.body;
-  console.log(`Producto: ${name}, Cantidad: ${quantity}, Precio: ${price}`);
-  //res.send(`Producto: ${name}, Cantidad: ${quantity},  Precio: ${price}`);
-  const newItem = { name, quantity, price };
-  cartItems.push(newItem);
-  res.sendStatus(200);
+  // Obtén la lista actualizada del cuerpo de la solicitud
+  const listaActualizada = req.body;
 
+  // Escribe la lista actualizada en el archivo correspondiente
+  fs.writeFile(listaActualizada, JSON.stringify(listaActualizada), error => {
+    if (error) {
+      console.error(error);
+      res.status(500).send('Error al actualizar la lista en el servidor');
+    } else {
+      res.send('Lista actualizada en el servidor');
+    }
+  });
 });
+
 app.get('/cart', (req, res) => {
-  res.send(cartItems);
+  res.send(listaActualizada);
 });
 
 

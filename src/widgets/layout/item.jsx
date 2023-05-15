@@ -2,11 +2,12 @@ import { CustomNumberInput } from "@/widgets/layout/quantity";
 import React, { useState } from 'react';
 
 
-export function Example (props) {
+export function Example(props) {
   const { products } = props;
   const [value, setValue] = useState(0);
   const [producto, setProducto] = useState([]);
   const [item, setItem] = useState([]);
+  let lista = [];
   const handleQuantityChange = (product) => (value1) => {
     setValue(value1);
     setProducto(product);
@@ -14,22 +15,43 @@ export function Example (props) {
   }
 
   const addToCart = () => {
-    const data = { name: producto.name, quantity: value , price: producto.price};
-    console.log(producto.name);
-    fetch('http://localhost:3000/cart', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    })
-    .then(response => {
-      if (response.ok) {
-        console.log('Producto agregado al carrito');
-      } else {
-        console.log('Error al agregar producto al carrito');
+    let data = {};
+    data = { name: producto.name, quantity: value, price: producto.price };
+    let existeData = false;
+    for (let i = 0; i < lista.length; i++) {
+      if (lista[i].name === data.name) {
+        lista[i].quantity += data.quantity;
+        actualizarListaMenu(lista)
+        existeData = true;
+        break;
       }
-    })
-    .catch(error => console.error('Error:', error));
+    }
+    // Si no existe el objeto data en la lista, lo agrega
+    if (!existeData) {
+      lista.push(data);
+      actualizarListaMenu(lista)
+    }
+    console.log(producto.name, producto.price);
   };
+
+
+  function actualizarListaMenu(lista1) {
+    fetch('/http://localhost:3000/cart', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(lista1)
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('No se pudo actualizar la lista en el servidor');
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
 
 
   return (
@@ -44,14 +66,13 @@ export function Example (props) {
                 <div className="ml-2  w-40" >
                   <h3 className="text-sm text-gray-700">
                     <a href={product.href}>
-                      <span aria-hidden="true" className="absolute inset-0" />
                       {product.name}
                     </a>
                   </h3>
                   <p className="mt-1 text-sm text-gray-500">{product.color}</p>
                   <p className="text-sm font-medium text-gray-900">{product.price}</p>
                   <CustomNumberInput onChange={handleQuantityChange(product)} />
-                  <button onClick= {addToCart()}className="rounded bg-custom-primary px-1 py-3 font-bunya-bold">Agregar</button>
+                  <button onClick={addToCart} className="rounded bg-custom-primary px-1 py-3 font-bunya-bold">Agregar</button>
                 </div>
               </div>
               <div className="min-h-40 aspect-h-1 aspect-w-1.8 w-40 overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-40">
