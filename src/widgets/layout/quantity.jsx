@@ -27,7 +27,7 @@ export function CustomNumberInput({onChange}) {
   };
 
   return (
-      <div className="flex flex-row h-6 w-13 relative bg-white mt-3 rounded-full">
+      <div className="flex flex-row h-6.8 w-13 relative bg-white mt-3 border-2 border-custom-secundary rounded-full">
         <button
           data-action="decrement"
           className="bg-gray-300 text-center text-gray-600 hover:text-custom-secundary hover:bg-gray-400 h-6 w-10 rounded-l-full cursor-pointer outline-none custom-bg-white "
@@ -37,7 +37,7 @@ export function CustomNumberInput({onChange}) {
         </button>
         <input
           type="number"
-          className="focus:outline-none text-center w-8 bg-gray-300 font-semibold text-md hover:text-black focus:text-black md:text-base cursor-default flex items-center text-custom-secundary outline-none custom-bg-white"
+          className="-ml-1 focus:outline-none text-center w-8 bg-gray-300 font-semibold text-md hover:text-black focus:text-black md:text-base cursor-default flex items-center text-custom-secundary outline-none custom-bg-white"
           name="custom-input-number"
           value={value}
           onChange={(e) => {

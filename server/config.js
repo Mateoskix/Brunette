@@ -3,6 +3,6 @@ import mysql from 'mysql';
 const connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    password : 'jtorres2004', //contraseña
+    password : '1027660022', //contraseña
   });
 export default connection;
