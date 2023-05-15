@@ -8,36 +8,13 @@ import obtenerproductos from '../controllers/productos.js';
 import insertarOrden from '../controllers/ordenes.js';
 
 
-connection.connect(function (err) {
-  if (err) throw err;
-  console.log("Connected!");
-});
+// connection.connect(function (err) {
+//   if (err) throw err;
+//   console.log("Connected!");
+// });
 
-export default connection;
-/*Esto va en un post, solo es para ver que si inserte*/
-const orden = {
-  direccion: 'Calle 123, Ciudad',
-  correo: 'correo@example.com',
-  nombre_cliente: 'Juan Pérez',
-  valor: 150.99,
-  productos: 'Producto 1, Producto 2',
-  fecha: new Date(),
-  estado: 'Pendiente',
-  nota: 'Ninguna'
-};
-connection.query('USE brunette');
-insertarOrden(orden, (error, result) => {
-  if (error) {
-    console.error('Error al insertar la orden:', error);
-    //res.status(500).json({ error: 'Ocurrió un error al insertar la orden' });
-  } else {
-    console.log('Orden insertada correctamente');
-    //res.json({ message: 'Orden insertada con éxito' });
-  }
-});
+// export default connection;
 
-/*hasta aquí*/
-//connection.end();
 
 app.use(bodyParser.json());
 
@@ -89,19 +66,10 @@ app.get('/productos', (req, res) => {
 
 
 // Ruta para crear un nuevo usuario
-/*
+
 app.post('/ordenes', (req, res) => {
   // Datos de la orden que deseas insertar
-  const orden = {
-    direccion: 'Calle 123, Ciudad',
-    correo: 'correo@example.com',
-    nombre_cliente: 'Juan Pérez',
-    valor: 150.99,
-    productos: 'Producto 1, Producto 2',
-    fecha: new Date(),
-    estado: 'Pendiente',
-    nota: 'Ninguna'
-  };
+  const orden = req.body.orden;
   connection.query('USE brunette');
   insertarOrden(orden, (error, result) => {
     if (error) {
@@ -113,7 +81,7 @@ app.post('/ordenes', (req, res) => {
     }
   });
 });
-*/
+
 
 app.post('/cart', (req, res) => {
   const { name, quantity, price } = req.body;

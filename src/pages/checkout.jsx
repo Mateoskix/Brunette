@@ -1,15 +1,54 @@
 import { SimpleFooter } from "@/widgets/layout";
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 export function Checkout() {
+  const [nombre, setNombre] = useState('');
+  const [apellido, setApellido] = useState('');
+  const [email, setEmail] = useState('');
+  const [direccion, setDireccion] = useState('');
+  const [nota, setNota] = useState('');
+  // Obtener la fecha y hora actual
+  const fechaActual = new Date();
+
+  // Formatear la fecha y hora en el formato esperado por MySQL (YYYY-MM-DD HH:MM:SS)
+  const fechaFormateada = fechaActual.toISOString().slice(0, 19).replace('T', ' ');
+
+  const ordenar = () => {
+    const orden = {
+      direccion,
+      correo: email,
+      nombre_cliente: `${nombre} ${apellido}`,
+      valor: 150.99,
+      productos: 'Producto 1, Producto 2',
+      fecha: fechaFormateada,
+      estado: 'Pendiente',
+      nota
+    };
+    fetch('http://localhost:3000/ordenes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ orden })
+    })
+    console.log(orden)
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => {
+        console.error(error);
+        // Aquí puedes manejar el error de acuerdo a tus necesidades
+      });
+  };
   return (
     <>
       <div className="flex justify-center items-center h-screen">
         <div className="absolute inset-0 z-0 h-full w-full bg-white" /> {/* ESTO OCULTA LA NAVBAR */}
         <section className="absolute">
-        <button className="hover:text-custom-secundary text-black font-bunya mb-3">
-        <Link to="/inicio">← Volver</Link>
-      </button>
+          <button className="hover:text-custom-secundary text-black font-bunya mb-3">
+            <Link to="/inicio">← Volver</Link>
+          </button>
           <div className="grid max-w-screen-2xl grid-cols-1 md:grid-cols-2">
             <div className="bg-gray-50 py-12 md:py-24">
               <div className="mx-auto max-w-lg space-y-8 px-4 lg:px-8">
@@ -81,78 +120,74 @@ export function Checkout() {
               <div className="mx-auto max-w-lg px-4 lg:px-8">
                 <form className="grid grid-cols-6 gap-4">
                   <div className="col-span-3">
-                    <label
-                      htmlFor="FirstName"
-                      className="block text-xs font-medium text-gray-700"
-                    >
-                      Nombre
+                    <label htmlFor="nombre" className="block text-xs font-medium text-gray-700">
+                      Nombre:
+                      <input
+                        type="text"
+                        id="nombre"
+                        value={nombre}
+                        onChange={(e) => setNombre(e.target.value)}
+                        className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                      />
                     </label>
-
-                    <input
-                      type="text"
-                      id="FirstName"
-                      className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
-                    />
                   </div>
 
                   <div className="col-span-3">
-                    <label
-                      htmlFor="LastName"
-                      className="block text-xs font-medium text-gray-700"
-                    >
-                      Apellido
+                    <label htmlFor="apellido" className="block text-xs font-medium text-gray-700">
+                      Apellido:
+                      <input
+                        type="text"
+                        id="apellido"
+                        value={apellido}
+                        onChange={(e) => setApellido(e.target.value)}
+                        className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                      />
                     </label>
-
-                    <input
-                      type="text"
-                      id="LastName"
-                      className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
-                    />
+                  </div>
+                  <div className="col-span-6">
+                    <label htmlFor="email" className="block text-xs font-medium text-gray-700">
+                      Email:
+                      <input
+                        type="text"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                      />
+                    </label>
                   </div>
 
                   <div className="col-span-6">
-                    <label htmlFor="Email" className="block text-xs font-medium text-gray-700">
-                      Email
+                    <label htmlFor="direccion" className="block text-xs font-medium text-gray-700">
+                      Dirección:
+                      <input
+                        type="text"
+                        id="direccion"
+                        value={direccion}
+                        onChange={(e) => setDireccion(e.target.value)}
+                        className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                      />
                     </label>
-
-                    <input
-                      type="email"
-                      id="Email"
-                      className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
-                    />
                   </div>
-
                   <div className="col-span-6">
-                    <label htmlFor="Phone" className="block text-xs font-medium text-gray-700">
-                      Dirección
+                    <label htmlFor="nota" className="block text-xs font-medium text-gray-700">
+                      Nota:
+                      <input
+                        type="text"
+                        id="nota"
+                        value={nota}
+                        onChange={(e) => setNota(e.target.value)}
+                        className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                      />
                     </label>
-
-                    <input
-                      type="tel"
-                      id="Phone"
-                      className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
-                    />
                   </div>
-                  <fieldset className="col-span-6">
-                    <div className="mt-1 -space-y-px rounded-md bg-white shadow-sm">
-                      <div>
-                        <label className="sr-only" htmlFor="PostalCode"> Código Postal</label>
-
-                        <input
-                          type="text"
-                          id="PostalCode"
-                          placeholder="Zip code"
-                          className="relative w-full rounded-b-md border-gray-200 focus:z-10 sm:text-sm"
-                        />
-                      </div>
-                    </div>
-                  </fieldset>
 
                   <div className="col-span-6">
                     <button
                       className="block w-full rounded-md bg-custom-secundary font-bunya-bold p-2.5 text-sm text-white transition hover:shadow-lg"
+                      onClick={ordenar}
                     >
-                      Pagar
+                      Ordenar
                     </button>
                   </div>
                 </form>
@@ -166,3 +201,34 @@ export function Checkout() {
 }
 
 export default Checkout;
+/*
+const orden = {
+  direccion: 'Calle 123, Ciudad',
+  correo: 'correo@example.com',
+  nombre_cliente: 'Juan Pérez',
+  valor: 150.99,
+  productos: 'Producto 1, Producto 2',
+  fecha: new Date(),
+  estado: 'Pendiente',
+  nota: 'Ninguna'
+};
+*/
+/*
+function ordenar(direccion, correo, nombre_cliente, valor, productos, fecha, estado, nota) {
+  const orden = [direccion, correo, nombre_cliente, valor, productos, fecha, estado, nota];
+
+  fetch('/ordenes', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ orden }) // Enviar la lista como objeto JSON en el cuerpo de la solicitud
+  })
+    .then(response => {
+      // Manejar la respuesta de la solicitud
+    })
+    .catch(error => {
+      // Manejar errores de la solicitud
+    });
+}
+*/
