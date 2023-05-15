@@ -11,18 +11,19 @@ export function Example(props) {
   const handleQuantityChange = (product) => (value1) => {
     setValue(value1);
     setProducto(product);
-    console.log("Producto:", producto.name, "Cantidad:", value);
+    //console.log("Producto:", producto.name, "Cantidad:", value);
   }
 
   const addToCart = () => {
+    console.log(producto.name, producto.price);
     let data = {};
     data = { name: producto.name, quantity: value, price: producto.price };
     let existeData = false;
     for (let i = 0; i < lista.length; i++) {
       if (lista[i].name === data.name) {
         lista[i].quantity += data.quantity;
-        actualizarListaMenu(lista)
         existeData = true;
+        actualizarListaMenu(lista)
         break;
       }
     }
@@ -31,12 +32,12 @@ export function Example(props) {
       lista.push(data);
       actualizarListaMenu(lista)
     }
-    console.log(producto.name, producto.price);
   };
 
 
   function actualizarListaMenu(lista1) {
-    fetch('/http://localhost:3000/cart', {
+    console.log(lista[0]);
+    fetch('http://localhost:3000/cart', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -47,6 +48,8 @@ export function Example(props) {
         if (!response.ok) {
           throw new Error('No se pudo actualizar la lista en el servidor');
         }
+        else
+          throw ('exito');
       })
       .catch(error => {
         console.error(error);

@@ -18,12 +18,6 @@ export function CustomNumberInput({onChange}) {
     setValue(newValue);
     onChange(newValue);
   
-    /* // Hacer una solicitud POST a la URL del backend
-    fetch('/shoppingcar', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: productName, quantity: newValue })
-    }); */
   };
 
   return (

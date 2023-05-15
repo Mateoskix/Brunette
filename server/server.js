@@ -5,6 +5,7 @@ const router = express.Router();
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const app = express();
 let cartItems = [];
+let listaActualizada = [];
 
 
 app.use(bodyParser.json());
@@ -78,18 +79,8 @@ app.get('/sedes',(req,res)=>{
 });
 
 app.post('/cart', (req, res) => {
-  // Obtén la lista actualizada del cuerpo de la solicitud
-  const listaActualizada = req.body;
-
-  // Escribe la lista actualizada en el archivo correspondiente
-  fs.writeFile(listaActualizada, JSON.stringify(listaActualizada), error => {
-    if (error) {
-      console.error(error);
-      res.status(500).send('Error al actualizar la lista en el servidor');
-    } else {
-      res.send('Lista actualizada en el servidor');
-    }
-  });
+  listaActualizada = req.body;
+  res.status(200).json({ message: 'La lista se actualizó correctamente' });
 });
 
 app.get('/cart', (req, res) => {
