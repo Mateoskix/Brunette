@@ -121,7 +121,7 @@ export function ShoppingCart() {
                                     <p className="mt-1 font-bunya text-sm text-gray-500">{product.color}</p>
                                   </div>
                                   <div className="flex flex-1 items-end justify-between font-bunya text-sm">
-                                    <p className="text-gray-500">Cantidad {product.quantity}</p>
+                                    <p className="text-gray-500 flex">Cantidad <p className='ml-3 font-lemon'>{product.quantity}</p></p>
 
                                     <div className="flex">
                                       <button
@@ -143,7 +143,7 @@ export function ShoppingCart() {
                     <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                       <div className="flex justify-between font-bunya-bold text-lg text-gray-900">
                         <p>Subtotal</p>
-                        <p>$262.00</p>
+                        <p className='font-lemon'>$262.00</p>
                       </div>
                       <p className="mt-0.5 text-sm font-bunya text-gray-500">Costos de envío en el checkout.</p>
                       <div className="mt-6">
