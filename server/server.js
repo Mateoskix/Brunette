@@ -51,6 +51,10 @@ app.get('/', (req, res) => {
   'hola';
 });
 
+app.get('/sedes',(req,res)=>{
+  res.json(sedes);
+});
+
 app.get('/productos', (req, res) => {
   obtenerproductos((error, results) => {
     if (error) {
