@@ -37,7 +37,7 @@ export function CustomNumberInput({onChange}) {
         </button>
         <input
           type="number"
-          className="-ml-1 focus:outline-none text-center w-8 bg-gray-300 font-semibold text-md hover:text-black focus:text-black md:text-base cursor-default flex items-center text-custom-secundary outline-none custom-bg-white"
+          className="focus:outline-none text-center w-8 bg-gray-300 font-semibold text-md hover:text-black focus:text-black md:text-base cursor-default flex items-center text-custom-secundary outline-none custom-bg-white"
           name="custom-input-number"
           value={value}
           onChange={(e) => {
