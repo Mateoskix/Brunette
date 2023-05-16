@@ -91,15 +91,47 @@ app.get('/productos/:nombre', (req, res) => {
   });
 });
 
+app.get('/productos/:ID_Producto', (req, res) => {
+  const id = req.params.nombre;
+  connection.query('USE brunette');
+  consultarIdProductoo (id,(error, results) => {
+    if (error) {
+      console.error('Error:', error);
+      res.status(500).json({ error: 'Error de servidor' });
+    } else {
+      if (results.length > 0) {
+        const ID_Producto = results[0].ID_Producto;
+        res.json({ ID_Producto });
+      } else {
+        res.status(404).json({ error: 'Producto no encontrado' });
+      }
+    }
+  });
+});
+
+app.delete('/productos/:ID_Producto', (req, res) => {
+  const idProducto = req.params.id;
+  connection.query('USE brunette');
+  eliminarProducto(idProducto, (error, result) => {
+    if (error) {
+      console.error('Error al eliminar el producto:', error);
+      res.status(500).json({ error: 'Ocurrió un error al eliminar el producto' });
+    } else {
+      console.log('Producto eliminado correctamente');
+      res.json({ message: 'Producto eliminado con éxito' });
+    }
+  });
+});
+
 
 
 
 // Ruta para crear un nuevo usuario
 
-app.put('/ordenes/:id', (req, res) => {
+app.put('/ordenes/:ID_Orden', (req, res) => {
   const idOrden = req.params.id;
   const nuevoEstado = req.body.estado;
-  
+  connection.query('USE brunette');
   connection.query('UPDATE ordenes SET estado = ? WHERE id = ?', [nuevoEstado, idOrden], (error, result) => {
     if (error) {
       console.error('Error al actualizar el estado de la orden:', error);
@@ -140,19 +172,7 @@ app.post('/productos', (req, res) => {
   });
 });
 
-app.delete('/productos/:id', (req, res) => {
-  const idProducto = req.params.id;
-  connection.query('USE brunette');
-  eliminarProducto(idProducto, (error, result) => {
-    if (error) {
-      console.error('Error al eliminar el producto:', error);
-      res.status(500).json({ error: 'Ocurrió un error al eliminar el producto' });
-    } else {
-      console.log('Producto eliminado correctamente');
-      res.json({ message: 'Producto eliminado con éxito' });
-    }
-  });
-});
+
 
 
 app.post('/cart', (req, res) => {
