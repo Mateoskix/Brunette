@@ -5,9 +5,12 @@ import connection from '../server/config.js';
 
 //const connection = require('../database'); // Importa tu objeto de conexión 
 // Consulta para obtener todos los productos
-function obtenerproductos(callback) { 
+export function obtenerproductos(callback) { 
     connection.query('SELECT * FROM brunette.productos;', callback);
 }  
 
-export default obtenerproductos;
+
+export function insertarProducto(producto, callback) {
+    connection.query('INSERT INTO productos SET ?', producto, callback);
+}
 
