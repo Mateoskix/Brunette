@@ -6,8 +6,7 @@ export function Example(props) {
   const { products } = props;
   const [value, setValue] = useState(0);
   const [producto, setProducto] = useState([]);
-  const [item, setItem] = useState([]);
-  let lista = [];
+  const [lista, setLista] = useState([]); 
   const handleQuantityChange = (product) => (value1) => {
     setValue(value1);
     setProducto(product);
@@ -18,25 +17,13 @@ export function Example(props) {
     console.log(producto.name, producto.price);
     let data = {};
     data = { name: producto.name, quantity: value, price: producto.price };
-    let existeData = false;
-    for (let i = 0; i < lista.length; i++) {
-      if (lista[i].name === data.name) {
-        lista[i].quantity += data.quantity;
-        existeData = true;
-        actualizarListaMenu(lista)
-        break;
-      }
-    }
-    // Si no existe el objeto data en la lista, lo agrega
-    if (!existeData) {
-      lista.push(data);
-      actualizarListaMenu(lista)
-    }
+    setLista([...lista, data]); 
+    actualizarListaMenu(lista);
   };
 
 
   function actualizarListaMenu(lista1) {
-    console.log(lista[0]);
+    console.log(lista[1]);
     fetch('http://localhost:3000/cart', {
       method: 'POST',
       headers: {

@@ -1,9 +1,10 @@
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { Link } from 'react-router-dom';
-import { XMarkIcon } from '@heroicons/react/24/outline'
+import { XMarkIcon } from '@heroicons/react/24/outline';
+import React, {useEffect} from 'react';
 
-const products = [
+/*const products = [
   {
     id: 1,
     name: 'Throwback Hip Bag',
@@ -48,10 +49,22 @@ const products = [
       'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
   },
   // More products...
-]
+]*/
 
 export function ShoppingCart() {
   const [open, setOpen] = useState(true)
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch('http://localhost:3000/cart');
+      const data = await response.json();
+      setProducts(data);
+      console.log(products)
+    }
+    fetchData();
+  }, []);
+
 
   return (
     <Transition.Root show={open} as={Fragment}>
