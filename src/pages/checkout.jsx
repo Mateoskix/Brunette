@@ -9,6 +9,8 @@ export function Checkout() {
   const [email, setEmail] = useState('');
   const [direccion, setDireccion] = useState('');
   const [nota, setNota] = useState('');
+  const [total, setTotal] = useState(0);
+
 
   const [cart, setCart] = useState([]);
   useEffect(() => {
@@ -19,6 +21,21 @@ export function Checkout() {
     }
     fetchData();
   }, []);
+  const calcular_total = () => {
+    let total = 0;
+    cart.forEach((product) => {
+      const precio = product.price;
+      const newStr = precio.slice(1, -1);
+      console.log(newStr);
+      const valor = parseFloat(newStr);
+      const cantidad = parseFloat(product.quantity);
+      total += valor * cantidad;
+    });
+    setTotal(total);
+  };
+  useEffect(() => {
+    calcular_total();
+  }, [cart]);
 
   // Obtener la fecha y hora actual
   const fechaActual = new Date();
@@ -66,7 +83,7 @@ export function Checkout() {
               <div className="mx-auto max-w-lg space-y-8 px-4 lg:px-8">
                 <div>
                   <p className="text-2xl font-medium tracking-tight text-gray-900">
-                    26000 COP
+                    {total} COP
                   </p>
 
                   <p className="mt-1 text-sm text-gray-600">Productos:</p>
