@@ -24,12 +24,9 @@ export function Checkout() {
   const calcular_total = () => {
     let total = 0;
     cart.forEach((product) => {
-      const precio = product.price;
-      const newStr = precio.slice(1, -1);
-      console.log(newStr);
-      const valor = parseFloat(newStr);
+      const precio = parseFloat(product.price);
       const cantidad = parseFloat(product.quantity);
-      total += valor * cantidad;
+      total += precio * cantidad;
     });
     setTotal(total);
   };
