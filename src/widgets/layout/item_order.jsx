@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { BiEditAlt } from 'react-icons/bi';
+import { HiCheckCircle } from 'react-icons/hi';
+import numeral from 'numeral';
 
 export function Ordeness(props) {
     const { ordenes } = props;
@@ -87,14 +88,14 @@ export function Ordeness(props) {
                                     <p className="text-sm w-16 leading-6 text-gray-900">{orden.fecha}</p>
                                 </div>
                                 <div className="min-w-0 flex-auto">
-                                    <p className="text-sm leading-6 text-gray-900">{orden.valor}</p>
+                                    <p className="text-sm leading-6 text-gray-900">{numeral(orden.valor).format('$0,0')}</p>
                                 </div>
                                 <div className="flex-end">
                                     <p className="text-sm font-semibold leading-6 text-green-500">{orden.estado}</p>
                                 </div>
                                 <div className="flex-end">
                                     <div className="flex flex-col items-center space-y-2">
-                                        <BiEditAlt onClick={() => actualizarEstadoOrden(orden.ID_Orden)} className="text-4xl rounded-md bg-gray-200 hover:bg-gray-300 p-2" />
+                                        <HiCheckCircle onClick={() => actualizarEstadoOrden(orden.ID_Orden)} className="text-4xl rounded-md bg-gray-200 hover:bg-gray-300 p-2" />
                                     </div>
                                 </div>
                             </div>

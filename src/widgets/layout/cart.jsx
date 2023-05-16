@@ -1,7 +1,8 @@
 import { Fragment, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { Link } from 'react-router-dom';
-import { XMarkIcon } from '@heroicons/react/24/outline'
+import { XMarkIcon } from '@heroicons/react/24/outline';
+import numeral from 'numeral';
 
 
 export function ShoppingCart() {
@@ -95,7 +96,7 @@ export function ShoppingCart() {
                                       <h3>
                                         <a href={product.href}>{product.name}</a>
                                       </h3>
-                                      <p className="ml-4">{product.price}</p>
+                                      <p className="ml-4">{numeral(product.price).format('$0,0')}</p>
                                     </div>
                                     <p className="mt-1 font-bunya text-sm text-gray-500">{product.color}</p>
                                   </div>
@@ -122,7 +123,7 @@ export function ShoppingCart() {
                     <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                       <div className="flex justify-between font-bunya-bold text-lg text-gray-900">
                         <p>Subtotal</p>
-                        <p className='font-lemon'>{total}</p>
+                        <p className='font-lemon'>{numeral(total).format('$0,0')}</p>
                       </div>
                       <p className="mt-0.5 text-sm font-bunya text-gray-500">Costos de envío en el checkout.</p>
                       <div className="mt-6">

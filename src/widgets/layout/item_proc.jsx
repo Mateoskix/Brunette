@@ -165,7 +165,7 @@ export function Prods(props) {
                                         <p className="text-sm leading-6 text-gray-900">{product.tamaño}</p>
                                     </div>
                                     <div className="flex-auto ">
-                                        <p className="text-sm leading-6 text-gray-900 ">{product.precio}</p>
+                                        <p className="text-sm leading-6 text-gray-900 ">{numeral(product.precio).format('$0,0')}</p>
                                     </div>
                                     <div className="flex-auto">
                                         <p className={`text-sm leading-6 ${product.disponibilidad === 1 ? 'text-green-500' : 'text-red-500'}`}>{product.disponibilidad === 1 ? 'DISPONIBLE' : 'NO DISPONIBLE'}</p>

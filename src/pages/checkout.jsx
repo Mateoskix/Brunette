@@ -1,6 +1,7 @@
 import { SimpleFooter } from "@/widgets/layout";
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import numeral from 'numeral';
 
 export function Checkout() {
 
@@ -86,7 +87,7 @@ export function Checkout() {
               <div className="mx-auto max-w-lg space-y-8 px-4 lg:px-8">
                 <div>
                   <p className="text-2xl font-medium tracking-tight text-gray-900">
-                    {total} COP
+                  {numeral(total).format('$0,0')} COP
                   </p>
 
                   <p className="mt-1 text-sm text-gray-600">Productos:</p>
