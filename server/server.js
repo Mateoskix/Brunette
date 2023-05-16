@@ -5,7 +5,7 @@ const app = express();
 let cartItems = [];
 import connection from './config.js';
 import { insertarOrden, mostrarOrden } from '../controllers/ordenes.js';
-import { insertarProducto, obtenerproductos, consultarIdProducto, actualizarProducto } from '../controllers/productos.js';
+import { insertarProducto, obtenerproductos, consultarIdProducto, actualizarProducto, eliminarProducto } from '../controllers/productos.js';
 let listaActualizada = [];
 
 
@@ -121,6 +121,20 @@ app.post('/productos', (req, res) => {
     } else {
       console.log('producto insertado correctamente');
       res.json({ message: 'producto insertado con éxito' });
+    }
+  });
+});
+
+app.delete('/productos/:id', (req, res) => {
+  const idProducto = req.params.id;
+  connection.query('USE brunette');
+  eliminarProducto(idProducto, (error, result) => {
+    if (error) {
+      console.error('Error al eliminar el producto:', error);
+      res.status(500).json({ error: 'Ocurrió un error al eliminar el producto' });
+    } else {
+      console.log('Producto eliminado correctamente');
+      res.json({ message: 'Producto eliminado con éxito' });
     }
   });
 });

@@ -21,3 +21,7 @@ export function consultarIdProducto(nombre, callback){
 export function actualizarProducto(producto, callback){
     connection.query('UPDATE productos SET ?', producto, callback);
 }
+
+export function eliminarProducto(idProducto, callback){
+    connection.query('DELETE FROM productos WHERE id = ?', idProducto, callback);
+}

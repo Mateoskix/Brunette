@@ -16,15 +16,18 @@ export function Prods(props) {
 
     const [state, setState] = useState("productos");
 
+    const [productToDelete, setProductToDelete] = useState('');
+
     const handleAgregarClick = () => {
         setState("agregar");
     };
     const handleBackClick = () => {
         setState("productos");
     };
-    const handleEliminarClick = () => {
+    const handleEliminarClick = (product) => {
+        setProductToDelete(product);
         setState("eliminar");
-    };
+      };
     const handleUpdateClick = (product) => {
         setNombre(product.nombre);
         setDescripcion(product.descripcion);
@@ -36,8 +39,9 @@ export function Prods(props) {
         setState("actualizar");
     };
 
-    const eliminar = (product) => {
-        fetch(`http://localhost:3000/productos/${product.ID_Producto}`, {
+    const eliminar = () => {
+        const id = productToDelete.ID_Producto;
+        fetch(`http://localhost:3000/productos/${id}`, {
           method: 'DELETE',
         })
           .then(response => {
@@ -50,7 +54,8 @@ export function Prods(props) {
           .catch(error => {
             console.error(error);
           });
-          handleBackClick();
+      
+        handleBackClick();
       };
 
     const agregar = () => {
@@ -168,7 +173,7 @@ export function Prods(props) {
                                     <div className="flex-end">
                                         <div className="flex flex-col items-center space-y-2">
                                             <BiEditAlt onClick={handleUpdateClick} className="text-4xl rounded-md bg-gray-200 hover:bg-gray-300 p-2" />
-                                            <BiTrash onClick={handleEliminarClick} className="text-4xl rounded-md bg-gray-200 hover:bg-gray-300 p-2" />
+                                            <BiTrash onClick={() => handleEliminarClick(product)} className="text-4xl rounded-md bg-gray-200 hover:bg-gray-300 p-2" />
                                         </div>
                                     </div>
                                 </div>
