@@ -96,6 +96,21 @@ app.get('/productos/:nombre', (req, res) => {
 
 // Ruta para crear un nuevo usuario
 
+app.put('/ordenes/:id', (req, res) => {
+  const idOrden = req.params.id;
+  const nuevoEstado = req.body.estado;
+  
+  connection.query('UPDATE ordenes SET estado = ? WHERE id = ?', [nuevoEstado, idOrden], (error, result) => {
+    if (error) {
+      console.error('Error al actualizar el estado de la orden:', error);
+      res.status(500).json({ error: 'Ocurrió un error al actualizar el estado de la orden' });
+    } else {
+      console.log('Estado de la orden actualizado correctamente');
+      res.json({ message: 'Estado de la orden actualizado con éxito' });
+    }
+  });
+});
+
 app.post('/ordenes', (req, res) => {
   // Datos de la orden que deseas insertar
   const orden = req.body.orden;

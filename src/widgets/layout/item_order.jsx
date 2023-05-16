@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { BiEditAlt } from 'react-icons/bi';
 
 export function Ordeness(props) {
     const { ordenes } = props;
@@ -7,6 +8,24 @@ export function Ordeness(props) {
         // Si ordenes no es un array, haz la conversión necesaria.
         ordenes = [ordenes];
     }
+
+    const actualizarEstadoOrden = (idOrden) => {
+        fetch(`/ordenes/${idOrden}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ estado: 'entregado' })
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data); // Manejar respuesta del servidor
+            })
+            .catch(error => {
+                console.error(error); // Manejar error
+            });
+    };
+
     return (
         <div className="bg-white">
             <div className="mx-20 ">
@@ -40,10 +59,13 @@ export function Ordeness(props) {
                             <div className="hidden sm:flex sm:flex-col sm:items-center">
                                 <p className="text-sm font-semibold leading-6 text-gray-900">Estado</p>
                             </div>
+                            <div className="hidden sm:flex sm:flex-col sm:items-center">
+                                <p className="text-sm font-semibold leading-6 text-gray-900">-</p>
+                            </div>
 
                         </div>
                         {ordenes.map((orden) => (
-                            <div className="flex py-2 border-t border-black ">
+                            <div className="flex py-2 border-t border-black items-center">
                                 <div className="min-w-0 flex-inital">
                                     <p className="text-sm leading-6 text-gray-900"></p>
                                 </div>
@@ -69,6 +91,11 @@ export function Ordeness(props) {
                                 </div>
                                 <div className="flex-end">
                                     <p className="text-sm font-semibold leading-6 text-green-500">{orden.estado}</p>
+                                </div>
+                                <div className="flex-end">
+                                    <div className="flex flex-col items-center space-y-2">
+                                        <BiEditAlt onClick={() => actualizarEstadoOrden(orden.ID_Orden)} className="text-4xl rounded-md bg-gray-200 hover:bg-gray-300 p-2" />
+                                    </div>
                                 </div>
                             </div>
 
