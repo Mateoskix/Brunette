@@ -8,33 +8,56 @@ export function Example(props) {
   const [value, setValue] = useState(0);
   const [producto, setProducto] = useState([]);
   const [item, setItem] = useState([]);
-  const handleQuantityChange = (product) => (value1) => {
+  const [lista, setLista] = useState([]);
+  
+ const handleQuantityChange = (product) => (value1) => {
     setValue(value1);
     setProducto(product);
-    console.log("Producto:", producto.name, "Cantidad:", value);
   };
 
   const addToCart = () => {
-    const data = {
-      name: producto.name,
-      quantity: value,
-      price: producto.price,
+    let data = {};
+    let existeData = false;
+    data = {
+      name: producto.nombre, quantity: value,
+      price: producto.precio, imageSrc: producto.img
     };
-    console.log(producto.name);
-    fetch("http://localhost:3000/cart", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    })
-      .then((response) => {
-        if (response.ok) {
-          console.log("Producto agregado al carrito");
-        } else {
-          console.log("Error al agregar producto al carrito");
+      for (let i = 0; i < lista.length; i++) {
+        if (lista[i].name === data.name) {
+          lista[i].quantity = data.quantity;
+          existeData = true;
+          actualizarListaMenu(lista)
+          break;
         }
-      })
-      .catch((error) => console.error("Error:", error));
+      }
+      // Si no existe el objeto data en la lista, lo agrega
+      if (!existeData) {
+        setLista([...lista, data]);
+        actualizarListaMenu(lista)
+      }
   };
+
+
+  function actualizarListaMenu(lista1) {
+    fetch('http://localhost:3000/cart', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(lista1)
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('No se pudo actualizar la lista en el servidor');
+        }
+        else
+          console.log('exito');
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
 
   return (
     <div className="bg-white">
@@ -59,7 +82,7 @@ export function Example(props) {
                 </div>
                 <div className="flex mt-1 items-center w-4/6 mr-2 ">
                   <CustomNumberInput onChange={handleQuantityChange(product)} />
-                  <button onClick={addToCart()} className="ml-3 mt-2.5 rounded-md bg-custom-secundary px-3 py-0.5 font-bunya-bold text-white text-sm">Agregar</button>
+                  <button onClick={addToCart} className="ml-3 mt-2.5 rounded-md bg-custom-secundary px-3 py-0.5 font-bunya-bold text-white text-sm">Agregar</button>
                 </div>
               </div>
               <div className="relative h-28 w-28 sm:h-24 sm:w-24 lg:h-40 lg:w-40 overflow-hidden border-2 rounded-md bg-gray-200 group-hover:opacity-75 order-last border-custom-secundary">
