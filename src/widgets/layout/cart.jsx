@@ -18,12 +18,22 @@ export function ShoppingCart() {
     fetchData();
   }, []);
 
-  const calcular_total= () => {
-    cart.map((product) => (
-      setTotal(...total,product.quantity * product.price)
-    ))
-  }
-  calcular_total;
+ const calcular_total = () => {
+      let total = 0;
+      cart.forEach((product) => {
+        const precio = product.price;
+        const newStr = precio.slice(1, -1);
+        console.log(newStr);
+        const valor = parseFloat(newStr);
+        const cantidad = parseFloat(product.quantity);
+        total += valor * cantidad;
+      });
+      setTotal(total);
+    };
+    useEffect(() => {
+      calcular_total();
+    }, [cart]);
+
 
   return (
     <Transition.Root show={open} as={Fragment}>
