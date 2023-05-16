@@ -57,7 +57,7 @@ export function Example(props) {
                   <p className="font-bold text-sm text-black mr-2">COP</p>
                   <p className="font-bold text-sm text-black">{numeral(product.precio).format('$0,0')}</p>
                 </div>
-                <div className="flex mt-1  items-center w-4/6 mr-2 ">
+                <div className="flex mt-1 items-center w-4/6 mr-2 ">
                   <CustomNumberInput onChange={handleQuantityChange(product)} />
                   <button onClick={addToCart()} className="ml-3 mt-2.5 rounded-md bg-custom-secundary px-3 py-0.5 font-bunya-bold text-white text-sm">Agregar</button>
                 </div>

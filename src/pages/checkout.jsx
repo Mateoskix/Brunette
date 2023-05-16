@@ -127,11 +127,10 @@ export function Checkout() {
                         id="nombre"
                         value={nombre}
                         onChange={(e) => setNombre(e.target.value)}
-                        className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                        className="mt-1 w-full rounded-md border-2 border-gray-300 shadow-sm sm:text-sm"
                       />
                     </label>
                   </div>
-
                   <div className="col-span-3">
                     <label htmlFor="apellido" className="block text-xs font-medium text-gray-700">
                       Apellido:
@@ -140,7 +139,7 @@ export function Checkout() {
                         id="apellido"
                         value={apellido}
                         onChange={(e) => setApellido(e.target.value)}
-                        className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                        className="mt-1 w-full rounded-md border-2 border-gray-300 shadow-sm sm:text-sm"
                       />
                     </label>
                   </div>
@@ -152,7 +151,7 @@ export function Checkout() {
                         id="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                        className="mt-1 w-full rounded-md border-2 border-gray-300 shadow-sm sm:text-sm"
                       />
                     </label>
                   </div>
@@ -165,7 +164,7 @@ export function Checkout() {
                         id="direccion"
                         value={direccion}
                         onChange={(e) => setDireccion(e.target.value)}
-                        className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                        className="mt-1 w-full rounded-md border-2 border-gray-300 shadow-sm sm:text-sm"
                       />
                     </label>
                   </div>
@@ -177,14 +176,14 @@ export function Checkout() {
                         id="nota"
                         value={nota}
                         onChange={(e) => setNota(e.target.value)}
-                        className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                        className="mt-1 w-full h-14 rounded-md border-2 border-gray-300 shadow-sm sm:text-sm"
                       />
                     </label>
                   </div>
 
                   <div className="col-span-6">
                     <button
-                      className="block w-full rounded-md bg-custom-secundary font-bunya-bold p-2.5 text-sm text-white transition hover:shadow-lg"
+                      className="block w-full rounded-md bg-custom-secundary font-bunya-bold p-2.5 text-xl text-white transition hover:shadow-lg"
                       onClick={ordenar}
                     >
                       Ordenar

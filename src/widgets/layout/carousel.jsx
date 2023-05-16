@@ -5,10 +5,11 @@ import { RxDotFilled } from 'react-icons/rx';
 const PhotoCarousel = () => {
 
     const slides = [
-        { url: 'img/teamwork.jpeg' },
-        { url: 'img/producto4.JPG' },
-        { url: 'img/background_inicio.jpg'},
-        { url: 'img/team2.jpg'}
+        { url: 'img/inicio1.png' },
+        { url: 'img/inicio2.png' },
+        { url: 'img/inicio3.png'},
+        { url: 'img/team2.jpg'},
+        { url: 'img/inicio4.png'}
     ];
 
     const [currentIndex, setCurrentIndex] = useState(0);
