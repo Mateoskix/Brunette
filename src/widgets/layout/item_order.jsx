@@ -10,7 +10,7 @@ export function Ordeness(props) {
     }
 
     const actualizarEstadoOrden = (idOrden) => {
-        fetch(`/ordenes/${idOrden}`, {
+        fetch(`http://localhost:3000/ordenes/${idOrden}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
