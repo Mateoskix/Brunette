@@ -5,7 +5,7 @@ const app = express();
 let cartItems = [];
 import connection from './config.js';
 import obtenerproductos from '../controllers/productos.js';
-import insertarOrden from '../controllers/ordenes.js';
+import { insertarOrden, mostrarOrden } from '../controllers/ordenes.js';
 
 
 // connection.connect(function (err) {
@@ -55,6 +55,8 @@ app.get('/sedes',(req,res)=>{
   res.json(sedes);
 });
 
+
+
 app.get('/productos', (req, res) => {
   obtenerproductos((error, results) => {
     if (error) {
@@ -66,6 +68,16 @@ app.get('/productos', (req, res) => {
   });
 });
 
+app.get('/ordenes', (req, res) => {
+  mostrarOrden((error, results) => {
+    if (error) {
+      console.error('Error al obtener las ordenes:', error);
+      res.status(500).json({ error: 'Ocurrió un error al obtener las ordenes' });
+    } else {
+      res.json(results);
+    }
+  });
+});
 
 
 
