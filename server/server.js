@@ -4,9 +4,8 @@ import bodyParser from 'body-parser';
 const app = express();
 let cartItems = [];
 import connection from './config.js';
-import obtenerproductos from '../controllers/productos.js';
 import { insertarOrden, mostrarOrden } from '../controllers/ordenes.js';
-
+import { insertarProducto, obtenerproductos } from '../controllers/productos.js';
 
 // connection.connect(function (err) {
 //   if (err) throw err;
@@ -68,6 +67,7 @@ app.get('/productos', (req, res) => {
   });
 });
 
+
 app.get('/ordenes', (req, res) => {
   mostrarOrden((error, results) => {
     if (error) {
@@ -94,6 +94,20 @@ app.post('/ordenes', (req, res) => {
     } else {
       console.log('Orden insertada correctamente');
       res.json({ message: 'Orden insertada con éxito' });
+    }
+  });
+});
+
+app.post('/productos', (req, res) => {
+  const producto = req.body.producto;
+  connection.query('USE brunette');
+  insertarProducto(producto, (error, result) => {
+    if (error) {
+      console.error('Error al insertar el producto:', error);
+      res.status(500).json({ error: 'Ocurrió un error al insertar el producto' });
+    } else {
+      console.log('producto insertado correctamente');
+      res.json({ message: 'producto insertado con éxito' });
     }
   });
 });
