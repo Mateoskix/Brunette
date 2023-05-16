@@ -199,7 +199,7 @@ export function Checkout() {
                       className="block w-full rounded-md bg-custom-secundary font-bunya-bold p-2.5 text-xl text-white transition hover:shadow-lg"
                       onClick={ordenar}
                     >
-                      Ordenar
+                      <a href={"/inicio"}>Ordenar</a>
                     </button>
                   </div>
                 </form>
