@@ -6,7 +6,7 @@ let cartItems = [];
 import connection from './config.js';
 import { insertarOrden, mostrarOrden } from '../controllers/ordenes.js';
 import { insertarProducto, obtenerproductos, consultarIdProducto, actualizarProducto } from '../controllers/productos.js';
-
+let listaActualizada = [];
 
 
 app.use(bodyParser.json());
@@ -127,16 +127,12 @@ app.post('/productos', (req, res) => {
 
 
 app.post('/cart', (req, res) => {
-  const { name, quantity, price } = req.body;
-  console.log(`Producto: ${name}, Cantidad: ${quantity}, Precio: ${price}`);
-  //res.send(`Producto: ${name}, Cantidad: ${quantity},  Precio: ${price}`);
-  const newItem = { name, quantity, price };
-  cartItems.push(newItem);
-  res.sendStatus(200);
-
+  listaActualizada = req.body;
+  res.status(200).json({ message: 'La lista se actualizó correctamente' });
 });
+
 app.get('/cart', (req, res) => {
-  res.send(cartItems);
+  res.json(listaActualizada);
 });
 
 
