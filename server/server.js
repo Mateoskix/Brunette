@@ -84,7 +84,7 @@ app.post('/cart', (req, res) => {
 });
 
 app.get('/cart', (req, res) => {
-  res.send(listaActualizada);
+  res.json(listaActualizada);
 });
 
 

@@ -6,7 +6,7 @@ export function Example(props) {
   const { products } = props;
   const [value, setValue] = useState(0);
   const [producto, setProducto] = useState([]);
-  const [lista, setLista] = useState([]); 
+  const [lista, setLista] = useState([]);
   const handleQuantityChange = (product) => (value1) => {
     setValue(value1);
     setProducto(product);
@@ -16,9 +16,24 @@ export function Example(props) {
   const addToCart = () => {
     console.log(producto.name, producto.price);
     let data = {};
-    data = { name: producto.name, quantity: value, price: producto.price };
-    setLista([...lista, data]); 
-    actualizarListaMenu(lista);
+    let existeData = false;
+    data = {
+      name: producto.name, quantity: value,
+      price: producto.price, imageSrc: producto.url
+    };
+      for (let i = 0; i < lista.length; i++) {
+        if (lista[i].name === data.name) {
+          lista[i].quantity = data.quantity;
+          existeData = true;
+          actualizarListaMenu(lista)
+          break;
+        }
+      }
+      // Si no existe el objeto data en la lista, lo agrega
+      if (!existeData) {
+        setLista([...lista, data]);
+        actualizarListaMenu(lista)
+      }
   };
 
 
@@ -36,7 +51,7 @@ export function Example(props) {
           throw new Error('No se pudo actualizar la lista en el servidor');
         }
         else
-          throw ('exito');
+          console.log('exito');
       })
       .catch(error => {
         console.error(error);

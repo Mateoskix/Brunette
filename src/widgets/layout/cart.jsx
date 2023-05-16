@@ -1,70 +1,29 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { Link } from 'react-router-dom';
-import { XMarkIcon } from '@heroicons/react/24/outline';
-import React, {useEffect} from 'react';
+import { XMarkIcon } from '@heroicons/react/24/outline'
 
-/*const products = [
-  {
-    id: 1,
-    name: 'Throwback Hip Bag',
-    href: '#',
-    color: 'Salmon',
-    price: '$90.00',
-    quantity: 1,
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg',
-    imageAlt: 'Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt.',
-  },
-  {
-    id: 2,
-    name: 'Medium Stuff Satchel',
-    href: '#',
-    color: 'Blue',
-    price: '$32.00',
-    quantity: 1,
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg',
-    imageAlt:
-      'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
-  },
-  {
-    id: 3,
-    name: 'Medium Stuff Satchel',
-    href: '#',
-    color: 'Blue',
-    price: '$32.00',
-    quantity: 1,
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg',
-    imageAlt:
-      'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
-  },
-  {
-    id: 4,
-    name: 'Medium Stuff Satchel',
-    href: '#',
-    color: 'Blue',
-    price: '$32.00',
-    quantity: 1,
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg',
-    imageAlt:
-      'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
-  },
-  // More products...
-]*/
 
 export function ShoppingCart() {
   const [open, setOpen] = useState(true)
-  const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     async function fetchData() {
       const response = await fetch('http://localhost:3000/cart');
       const data = await response.json();
-      setProducts(data);
-      console.log(products)
+      setCart(data);
     }
     fetchData();
   }, []);
 
+  const calcular_total= () => {
+    cart.map((product) => (
+      setTotal(...total,product.quantity * product.price)
+    ))
+  }
+  calcular_total;
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -113,7 +72,7 @@ export function ShoppingCart() {
                       <div className="mt-8">
                         <div className="flow-root">
                           <ul role="list" className="-my-6 divide-y divide-gray-200">
-                            {products.map((product) => (
+                            {cart.map((product) => (
                               <li key={product.id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray">
                                   <img
@@ -134,7 +93,7 @@ export function ShoppingCart() {
                                     <p className="mt-1 font-bunya text-sm text-gray-500">{product.color}</p>
                                   </div>
                                   <div className="flex flex-1 items-end justify-between font-bunya text-sm">
-                                    <p className="text-gray-500">Cantidad {product.quantity}</p>
+                                    <p className="text-gray-500 flex">Cantidad <p className='ml-3 font-lemon'>{product.quantity}</p></p>
 
                                     <div className="flex">
                                       <button
@@ -156,7 +115,7 @@ export function ShoppingCart() {
                     <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                       <div className="flex justify-between font-bunya-bold text-lg text-gray-900">
                         <p>Subtotal</p>
-                        <p>$262.00</p>
+                        <p className='font-lemon'>{total}</p>
                       </div>
                       <p className="mt-0.5 text-sm font-bunya text-gray-500">Costos de envío en el checkout.</p>
                       <div className="mt-6">
