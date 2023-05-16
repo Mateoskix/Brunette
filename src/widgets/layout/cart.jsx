@@ -7,6 +7,8 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 export function ShoppingCart() {
   const [open, setOpen] = useState(true)
   const [cart, setCart] = useState([]);
+  const [total, setTotal] = useState(0);
+
   useEffect(() => {
     async function fetchData() {
       const response = await fetch('http://localhost:3000/cart');
@@ -15,6 +17,13 @@ export function ShoppingCart() {
     }
     fetchData();
   }, []);
+
+  const calcular_total= () => {
+    cart.map((product) => (
+      setTotal(...total,product.quantity * product.price)
+    ))
+  }
+  calcular_total;
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -106,7 +115,7 @@ export function ShoppingCart() {
                     <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                       <div className="flex justify-between font-bunya-bold text-lg text-gray-900">
                         <p>Subtotal</p>
-                        <p className='font-lemon'>$262.00</p>
+                        <p className='font-lemon'>{total}</p>
                       </div>
                       <p className="mt-0.5 text-sm font-bunya text-gray-500">Costos de envío en el checkout.</p>
                       <div className="mt-6">
