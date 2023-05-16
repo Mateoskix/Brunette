@@ -1,8 +1,11 @@
 import connection from '../server/config.js';
 
 // Consulta para insertar una nueva orden
-function insertarOrden(orden, callback) {
+export function insertarOrden(orden, callback) {
     connection.query('INSERT INTO ordenes SET ?', orden, callback);
 }
 
-export default insertarOrden;
+
+export function mostrarOrden(callback){
+    connection.query('SELECT * FROM brunette.ordenes;', callback);
+}

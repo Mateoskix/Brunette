@@ -6,6 +6,7 @@ import { Prods } from "@/widgets/layout/item_proc";
 export function Admin() {
     const [products, setProducts] = useState([]);
     const [activeButton, setActiveButton] = useState('ordenes');
+    const [ordenes, setOrders] = useState(['']);
 
     const handleButtonClick = (buttonName) => {
         setActiveButton(buttonName);
@@ -19,7 +20,17 @@ export function Admin() {
         }
         fetchData();
     }, []);
-
+    
+    
+    useEffect(() => {
+        async function fetchData() {
+            const response = await fetch('http://localhost:3000/ordenes');
+            const data2 = await response.json();
+            setOrders(data2);
+        }
+        fetchData();
+    }, []);
+    
     return (
         <>
             <div className="flex">
@@ -85,7 +96,7 @@ export function Admin() {
                 <div className="flex-1">
                     {activeButton == 'ordenes' && (
                         <div>
-                            <Ordeness products={products} />
+                            <Ordeness ordenes={ordenes} />
                         </div>
                     )}
                     {activeButton == 'productos' && (

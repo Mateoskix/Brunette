@@ -1,11 +1,59 @@
 import React, { useState } from "react";
-import numeral from 'numeral';
 
+const products = [
+    {
+      id: 1,
+      name: 'Throwback Hip Bag',
+      href: '#',
+      color: 'Salmon',
+      price: '$90.00',
+      quantity: 1,
+      imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg',
+      imageAlt: 'Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt.',
+    },
+    {
+      id: 2,
+      name: 'Medium Stuff Satchel',
+      href: '#',
+      color: 'Blue',
+      price: '$32.00',
+      quantity: 1,
+      imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg',
+      imageAlt:
+        'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
+    },
+    {
+      id: 3,
+      name: 'Medium Stuff Satchel',
+      href: '#',
+      color: 'Blue',
+      price: '$32.00',
+      quantity: 1,
+      imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg',
+      imageAlt:
+        'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
+    },
+    {
+      id: 4,
+      name: 'Medium Stuff Satchel',
+      href: '#',
+      color: 'Blue',
+      price: '$32.00',
+      quantity: 1,
+      imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg',
+      imageAlt:
+        'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
+    },
+    // More products...
+  ]
 
 export function Ordeness(props) {
-    const { products } = props;
-
-
+    const {ordenes} = props;
+    console.log(ordenes);
+    if (!Array.isArray(ordenes)) {
+        // Si ordenes no es un array, haz la conversión necesaria.
+        ordenes = [ordenes];
+      }
     return (
         <div className="bg-white">
             <div className="mx-20 ">
@@ -16,7 +64,7 @@ export function Ordeness(props) {
                     <div className="flex flex-col sapce-y-4 ">
                         <div className="flex gap-x-4 py-2">
                             <div className="min-w-0 flex-auto">
-                                <p className="text-sm font-semibold leading-6 text-gray-900">#Orden</p>
+                                <p className="text-sm font-semibold leading-6 text-gray-900"></p>
                             </div>
                             <div className="min-w-0 flex-auto">
                                 <p className="text-sm font-semibold leading-6 text-gray-900">Productos</p>
@@ -41,10 +89,10 @@ export function Ordeness(props) {
                             </div>
                             
                         </div>
-                        {products.map((product) => (
+                        {ordenes.map((orden) => (
                             <div className="flex py-2 border-t border-black ">    
                                 <div className="min-w-0 flex-auto">
-                                    <p className="text-sm leading-6 text-gray-900">1</p>
+                                    <p className="text-sm leading-6 text-gray-900"></p>
                                 </div>
                                 <div className="min-w-0 flex-auto">
                                     <p className="text-sm leading-6 text-gray-900">Producto 1, Producto 2</p>
