@@ -1,10 +1,19 @@
 import React, { useState } from "react";
 import numeral from 'numeral';
+
 import { BiTrash, BiEditAlt } from 'react-icons/bi';
 
 
 export function Prods(props) {
     const { products } = props;
+
+    const [nombre, setNombre] = useState('');
+    const [descripcion, setDescripcion] = useState('');
+    const [tamaño, setTamaño] = useState('');
+    const [precio, setPrecio] = useState('');
+    const [disponibilidad, setDisponibilidad] = useState('');
+    const [stock, setStock] = useState('');
+    const [img, setImg] = useState('');
 
     const [state, setState] = useState("productos");
 
@@ -17,7 +26,31 @@ export function Prods(props) {
     const handleUpdateClick = () => {
         setState("actualizar");
     };
-
+    const agregar = () => {
+        const producto = {
+            nombre,
+            descripcion: descripcion,
+            tamaño: tamaño,
+            precio: precio,
+            disponibilidad: disponibilidad,
+            stock: stock,
+            img: img,
+        };
+        fetch('http://localhost:3000/productos', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ producto })
+        })
+        console.log(producto)
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    };
     return (
         <div className="bg-white">
             <div className="mx-20 ">
@@ -92,6 +125,122 @@ export function Prods(props) {
                 )}
                 {state === "agregar" && (
                     <div>Ingresa los datos <button onClick={handleBackClick} className="ml-10 hover:bg-custom-primary text-base border-2 px-4 py-2 rounded-lg"> Volver</button>
+                        <form className="grid grid-cols-6 gap-4">
+                            <div className="col-span-3">
+                                <label htmlFor="nombre" className="block text-xs font-medium text-gray-700">
+                                    Nombre:
+                                    <input
+                                        type="text"
+                                        id="nombre"
+                                        value={nombre}
+                                        onChange={(e) => setNombre(e.target.value)}
+                                        className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                                    />
+                                </label>
+                            </div>
+
+                            <div className="col-span-3">
+                                <label htmlFor="descripcion" className="block text-xs font-medium text-gray-700">
+                                    Descripcion:
+                                    <input
+                                        type="text"
+                                        id="descripcion"
+                                        value={descripcion}
+                                        onChange={(e) => setDescripcion(e.target.value)}
+                                        className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                                    />
+                                </label>
+                            </div>
+                            <div className="col-span-6">
+                                <label htmlFor="precio" className="block text-xs font-medium text-gray-700">
+                                    Precio:
+                                    <input
+                                        type="number"
+                                        id="precio"
+                                        value={precio}
+                                        onChange={(e) => setPrecio(e.target.value)}
+                                        className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                                    />
+                                </label>
+                            </div>
+                            <div className="col-span-6">
+                                <label htmlFor="tamaño" className="block text-xs font-medium text-gray-700">
+                                    tamaño:
+                                    <input
+                                        type="text"
+                                        id="tamaño"
+                                        value={tamaño}
+                                        onChange={(e) => setTamaño(e.target.value)}
+                                        className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                                    />
+                                </label>
+                            </div>
+
+                            <div className="col-span-6">
+                                <label htmlFor="disponibilidad" className="block text-xs font-medium text-gray-700">
+                                    Disponibilidad:
+                                    <input
+                                        type="number"
+                                        id="disponibilidad"
+                                        value={disponibilidad}
+                                        onChange={(e) => setDisponibilidad(e.target.value)}
+                                        className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                                    />
+                                </label>
+                            </div>
+                            <div className="col-span-6">
+                                <label htmlFor="stock" className="block text-xs font-medium text-gray-700">
+                                    Stock:
+                                    <select
+                                        id="stock"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-500"
+                                        
+                                    >
+                                        <option value="no">No</option>
+                                        <option value="yes">Sí</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div className="col-span-6">
+                                <label htmlFor="Cantidad Stock" className="block text-xs font-medium text-gray-700">
+                                    Cantidad Stock:
+                                    <input
+                                        type="number"
+                                        id="can_stock"
+                                        value={stock}
+                                        onChange={(e) => setStock(e.target.value)}
+                                        className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                                    />
+                                </label>
+                            </div>
+                            <div className="col-span-6">
+                                <label htmlFor="img" className="block text-xs font-medium text-gray-700">
+                                    Imagen:
+                                    <input
+                                        type="text"
+                                        id="img"
+                                        value={img}
+                                        onChange={(e) => setImg(e.target.value)}
+                                        className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                                    />
+                                </label>
+                            </div>
+
+                            <div className="col-span-6">
+                                <button
+                                    className="block w-full rounded-md bg-custom-secundary font-bunya-bold p-2.5 text-sm text-white transition hover:shadow-lg"
+                                    onClick={agregar}
+                                >
+                                    Agregar
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                )
+                }
+                {state === "actualizar" && (
+                    <div>Actualiza los datos <button onClick={handleBackClick} className="ml-10 hover:bg-custom-primary text-base border-2 px-4 py-2 rounded-lg"> Volver</button>
                         <form className="grid grid-cols-6 gap-4">
                             <div className="col-span-3">
                                 <label htmlFor="nombre" className="block text-xs font-medium text-gray-700">
