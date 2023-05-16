@@ -20,7 +20,7 @@ export const teamData = [
     position: "Founder and CEO",
   },
   {
-    img: "/img/producto-rollito.jpg",
+    img: "/img/yogurt.JPG",
     name: "Ryan Tompson",
     position: "Web Developer",
   },
