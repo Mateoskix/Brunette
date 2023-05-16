@@ -1,13 +1,25 @@
 import { SimpleFooter } from "@/widgets/layout";
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export function Checkout() {
+
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
   const [email, setEmail] = useState('');
   const [direccion, setDireccion] = useState('');
   const [nota, setNota] = useState('');
+
+  const [cart, setCart] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch('http://localhost:3000/cart');
+      const data = await response.json();
+      setCart(data);
+    }
+    fetchData();
+  }, []);
+
   // Obtener la fecha y hora actual
   const fechaActual = new Date();
 
@@ -63,53 +75,34 @@ export function Checkout() {
                 <div>
                   <div className="flow-root">
                     <ul className="-my-4 divide-y divide-gray-100">
+                      
+                    {cart.map((product) => (
                       <li className="flex items-center gap-4 py-4">
                         <img
-                          src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80"
+                          src={product.imageSrc}
                           alt=""
                           className="h-16 w-16 rounded object-cover"
                         />
 
                         <div>
-                          <h3 className="text-sm text-gray-900">Basic Tee 6-Pack</h3>
+                          <h3 className="text-sm text-gray-900">{product.name}</h3>
 
                           <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
                             <div>
-                              <dt className="inline">Size:</dt>
-                              <dd className="inline">XXS</dd>
+                              <dt className="inline"></dt>
+                              <dd className="inline"></dd>
                             </div>
 
                             <div>
-                              <dt className="inline">Color:</dt>
-                              <dd className="inline">White</dd>
+                              <dt className="inline">Cantidad:</dt>
+                              <dd className="inline">{product.quantity}</dd>
                             </div>
                           </dl>
                         </div>
                       </li>
+                    ))}
 
-                      <li className="flex items-center gap-4 py-4">
-                        <img
-                          src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80"
-                          alt=""
-                          className="h-16 w-16 rounded object-cover"
-                        />
 
-                        <div>
-                          <h3 className="text-sm text-gray-900">Basic Tee 6-Pack</h3>
-
-                          <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
-                            <div>
-                              <dt className="inline">Size:</dt>
-                              <dd className="inline">XXS</dd>
-                            </div>
-
-                            <div>
-                              <dt className="inline">Color:</dt>
-                              <dd className="inline">White</dd>
-                            </div>
-                          </dl>
-                        </div>
-                      </li>
                     </ul>
                   </div>
                 </div>
@@ -200,34 +193,3 @@ export function Checkout() {
 }
 
 export default Checkout;
-/*
-const orden = {
-  direccion: 'Calle 123, Ciudad',
-  correo: 'correo@example.com',
-  nombre_cliente: 'Juan Pérez',
-  valor: 150.99,
-  productos: 'Producto 1, Producto 2',
-  fecha: new Date(),
-  estado: 'Pendiente',
-  nota: 'Ninguna'
-};
-*/
-/*
-function ordenar(direccion, correo, nombre_cliente, valor, productos, fecha, estado, nota) {
-  const orden = [direccion, correo, nombre_cliente, valor, productos, fecha, estado, nota];
-
-  fetch('/ordenes', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ orden }) // Enviar la lista como objeto JSON en el cuerpo de la solicitud
-  })
-    .then(response => {
-      // Manejar la respuesta de la solicitud
-    })
-    .catch(error => {
-      // Manejar errores de la solicitud
-    });
-}
-*/
