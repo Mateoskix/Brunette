@@ -10,7 +10,7 @@ export function Checkout() {
   const [direccion, setDireccion] = useState('');
   const [nota, setNota] = useState('');
   const [total, setTotal] = useState(0);
-
+  const [nombres, setProductNombres] = useState([]);
 
   const [cart, setCart] = useState([]);
   useEffect(() => {
@@ -32,7 +32,12 @@ export function Checkout() {
   };
   useEffect(() => {
     calcular_total();
+    calcularNombresProductos();
   }, [cart]);
+  const calcularNombresProductos = () => {
+    const nombres = cart.map(product => product.name);
+    setProductNombres(nombres);
+  };
 
   // Obtener la fecha y hora actual
   const fechaActual = new Date();
@@ -41,12 +46,14 @@ export function Checkout() {
   const fechaFormateada = fechaActual.toISOString().slice(0, 19).replace('T', ' ');
 
   const ordenar = () => {
+    const productos = nombres.join(', ');
+    console.log(productos);
     const orden = {
       direccion,
       correo: email,
       nombre_cliente: `${nombre} ${apellido}`,
-      valor: 150.99,
-      productos: 'Producto 1, Producto 2',
+      valor: total,
+      productos,
       fecha: fechaFormateada,
       estado: 'Pendiente',
       nota
@@ -64,7 +71,6 @@ export function Checkout() {
       })
       .catch(error => {
         console.error(error);
-        // Aquí puedes manejar el error de acuerdo a tus necesidades
       });
   };
   return (
