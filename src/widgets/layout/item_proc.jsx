@@ -22,7 +22,14 @@ export function Prods(props) {
     const handleBackClick = () => {
         setState("productos");
     };
-    const handleUpdateClick = () => {
+    const handleUpdateClick = (product) => {
+        setNombre(product.nombre);
+        setDescripcion(product.descripcion);
+        setTamaño(product.tamaño);
+        setPrecio(product.precio);
+        setDisponibilidad(product.disponibilidad);
+        setStock(product.stock);
+        setImg(product.img);
         setState("actualizar");
     };
     const agregar = () => {
@@ -50,6 +57,34 @@ export function Prods(props) {
                 console.error(error);
             });
     };
+    const actualizar = () => {
+        const productoActualizado = {
+          nombre,
+          descripcion,
+          tamaño,
+          precio,
+          disponibilidad,
+          stock,
+          img,
+        };
+      
+        fetch(`http://localhost:3000/productos/${nombre}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ producto: productoActualizado })
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+            console.log("actualización completa")
+          })
+          .catch(error => {
+            console.error(error);
+            console.log("actualización falló")
+          });
+      };
     return (
         <div className="bg-white">
             <div className="mx-20 ">
@@ -189,7 +224,7 @@ export function Prods(props) {
                                     <select
                                         id="stock"
                                         className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-500"
-                                        
+
                                     >
                                         <option value="no">No</option>
                                         <option value="yes">Sí</option>
@@ -243,8 +278,8 @@ export function Prods(props) {
                                     <input
                                         type="text"
                                         id="nombre"
-                                        /* value={""} */
-                                        onChange={""}
+                                        value={nombre}
+                                        onChange={(e) => setNombre(e.target.value)}
                                         className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
                                     />
                                 </label>
@@ -256,8 +291,8 @@ export function Prods(props) {
                                     <input
                                         type="text"
                                         id="descripcion"
-                                        /* value={""} */
-                                        onChange={""}
+                                        value={descripcion}
+                                        onChange={(e) => setDescripcion(e.target.value)}
                                         className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
                                     />
                                 </label>
@@ -268,8 +303,8 @@ export function Prods(props) {
                                     <input
                                         type="number"
                                         id="precio"
-                                        /* value={""} */
-                                        onChange={""}
+                                        value={precio}
+                                        onChange={(e) => setPrecio(e.target.value)}
                                         className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
                                     />
                                 </label>
@@ -280,8 +315,8 @@ export function Prods(props) {
                                     <input
                                         type="text"
                                         id="tamaño"
-                                        /* value={""} */
-                                        onChange={""}
+                                        value={tamaño}
+                                        onChange={(e) => setTamaño(e.target.value)}
                                         className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
                                     />
                                 </label>
@@ -293,8 +328,8 @@ export function Prods(props) {
                                     <input
                                         type="number"
                                         id="disponibilidad"
-                                        /* value={""} */
-                                        onChange={""}
+                                        value={disponibilidad}
+                                        onChange={(e) => setDisponibilidad(e.target.value)}
                                         className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
                                     />
                                 </label>
@@ -305,8 +340,7 @@ export function Prods(props) {
                                     <select
                                         id="stock"
                                         className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-500"
-                                        /*  value={""} */
-                                        onChange={""}
+                                        
                                     >
                                         <option value="no">No</option>
                                         <option value="yes">Sí</option>
@@ -319,8 +353,8 @@ export function Prods(props) {
                                     <input
                                         type="number"
                                         id="can_stock"
-                                        /* value={""} */
-                                        onChange={""}
+                                        value={stock}
+                                        onChange={(e) => setStock(e.target.value)}
                                         className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
                                     />
                                 </label>
@@ -331,8 +365,8 @@ export function Prods(props) {
                                     <input
                                         type="text"
                                         id="img"
-                                        /* value={""} */
-                                        onChange={""}
+                                        value={img}
+                                        onChange={(e) => setImg(e.target.value)}
                                         className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
                                     />
                                 </label>
@@ -341,7 +375,7 @@ export function Prods(props) {
                             <div className="col-span-6">
                                 <button
                                     className="block w-full rounded-md bg-custom-secundary font-bunya-bold p-2.5 text-sm text-white transition hover:shadow-lg"
-                                    onClick={""}
+                                    onClick={actualizar}
                                 >
                                     Agregar
                                 </button>

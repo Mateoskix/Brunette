@@ -14,3 +14,10 @@ export function insertarProducto(producto, callback) {
     connection.query('INSERT INTO productos SET ?', producto, callback);
 }
 
+export function consultarIdProducto(nombre, callback){
+    connection.query('SELECT ID_Producto FROM productos WHERE nombre = ?', nombre,  callback);
+}
+
+export function actualizarProducto(producto, callback){
+    connection.query('UPDATE productos SET ?', producto, callback);
+}

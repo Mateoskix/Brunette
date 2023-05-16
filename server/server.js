@@ -5,14 +5,8 @@ const app = express();
 let cartItems = [];
 import connection from './config.js';
 import { insertarOrden, mostrarOrden } from '../controllers/ordenes.js';
-import { insertarProducto, obtenerproductos } from '../controllers/productos.js';
+import { insertarProducto, obtenerproductos, consultarIdProducto, actualizarProducto } from '../controllers/productos.js';
 
-// connection.connect(function (err) {
-//   if (err) throw err;
-//   console.log("Connected!");
-// });
-
-// export default connection;
 
 
 app.use(bodyParser.json());
@@ -78,6 +72,25 @@ app.get('/ordenes', (req, res) => {
     }
   });
 });
+
+app.get('/productos/:nombre', (req, res) => {
+  const nombreProducto = req.params.nombre;
+  connection.query('USE brunette');
+  consultarIdProducto (nombreProducto,(error, results) => {
+    if (error) {
+      console.error('Error:', error);
+      res.status(500).json({ error: 'Error de servidor' });
+    } else {
+      if (results.length > 0) {
+        const ID_Producto = results[0].ID_Producto;
+        res.json({ ID_Producto });
+      } else {
+        res.status(404).json({ error: 'Producto no encontrado' });
+      }
+    }
+  });
+});
+
 
 
 
